@@ -33,9 +33,9 @@
       
       <nav class="header__nav">
         <ul>
-          <li><a href="products.html">Products</a></li>
-          <li><a href="sale.html">On Sale</a></li>
-          <li><a href="#">Contact Us</a></li>
+          <li><a href="products.html" class="active">Products</a></li>
+          <li><a href="onsale.html">On Sale</a></li>
+          <li><a href="contact.html">Contact Us</a></li>
           <li class="login-link">
             <a href="#">
               <img src="./images/log in headedr oic.png" alt="login">
@@ -47,8 +47,9 @@
 
       
       <div class="header__icons">
-        <button class="icon-btn">
+        <button class="icon-btn cart-btn">
           <img src="./images/shopping-cart.png" alt="Cart">
+          <span class="cart-badge" id="cart-badge">0</span>
         </button>
       </div>
 
@@ -87,12 +88,16 @@
             <div class="carousel-track" role="list">
 
             <div class="product-card">
-               <a href="#" class="product-link" role="listitem">
+               <a href="item.html" class="product-link" role="listitem">
                 <img src="./images/Playbox.avif" alt="Playbox XZ Gold">
                 <h3>Playbox XZ Gold Edition</h3>
                 <p class="price">$1,000.00</p>
                </a>
-                <button class="btn btn-primary">Add to Cart</button>
+                <button class="btn btn-primary add-to-cart"
+                data-title="Playbox XZ Gold Edition"
+                data-price="1000.00"
+                data-image="./images/Playbox.avif">Add to Cart
+              </button>
             </div>
 
                 <div class="product-card">
@@ -101,7 +106,10 @@
                     <h3>Echo Headset</h3>
                     <p class="price">$36.99</p>
                     </a>
-                    <button class="btn btn-primary">Add to Cart</button>
+                    <button class="btn btn-primary add-to-cart"
+                    data-title="Echo Headset"
+                    data-price="36.99"
+                    data-image="./images/Echo Headset.avif">Add to Cart</button>
                     
                 </div>
 
@@ -115,7 +123,10 @@
                     <p class="price">$116.99</p>
                     </div>
                     </a>
-                    <button class="btn btn-primary">Add to Cart</button>
+                    <button class="btn btn-primary add-to-cart"
+                    data-title="Mach gaming chair"
+                    data-price="116.99"
+                    data-image="./images/Mach chair.avif">Add to Cart</button>
                     
                 </div>
 
@@ -125,7 +136,10 @@
                     <h3>X-2 Wireless Mouse</h3>
                     <p class="price">$24.99</p>
                     </a>
-                    <button class="btn btn-primary">Add to Cart</button>
+                    <button class="btn btn-primary add-to-cart"
+                    data-title="X-2 Wireless Mouse"
+                    data-price="24.99"
+                    data-image="./images/x2 mouse.avif">Add to Cart</button>
                 </div>
 
                 <div class="product-card sale">
@@ -138,7 +152,10 @@
                     <p class="price">$40.49</p>
                     </div>
                     </a>
-                    <button class="btn btn-primary">Add to Cart</button>
+                    <button class="btn btn-primary add-to-cart"
+                    data-title="Spartan Mechanical Keyboard"
+                    data-price="40.49"
+                    data-image="./images/Spartan keyboard.avif">Add to Cart</button>
                 </div>
 
                 <div class="product-card sale">
@@ -151,7 +168,10 @@
                     <p class="price">$26.99</p>
                     </div>
                     </a>
-                    <button class="btn btn-primary">Add to Cart</button>
+                    <button class="btn btn-primary add-to-cart"
+                    data-title="Raptor"
+                    data-price="26.99"
+                    data-image="./images/Raptor.avif">Add to Cart</button>
                 </div>
                 
                 <div class="product-card">
@@ -160,7 +180,10 @@
                     <h3>Wave</h3>
                     <p class="price">$29.99</p>
                     </a>
-                    <button class="btn btn-primary">Add to Cart</button>
+                    <button class="btn btn-primary add-to-cart"
+                    data-title="Wave"
+                    data-price="29.99"
+                    data-image="./images/Wave.avif">Add to Cart</button>
                 </div>
 
                 <div class="product-card">
@@ -169,7 +192,10 @@
                     <h3>Wave Gen RX</h3>
                     <p class="price">$579.99</p>
                     </a>
-                    <button class="btn btn-primary">Add to Cart</button>
+                    <button class="btn btn-primary add-to-cart"
+                    data-title="Wave Gen RX"
+                    data-price="579.99"
+                    data-image="./images/Wave Gen RX.avif">Add to Cart</button>
                 </div>
 
                 <div class="product-card">
@@ -178,7 +204,11 @@
                     <h3>Ancient Souls</h3>
                     <p class="price">$39.99</p>
                     </a>
-                    <button class="btn btn-primary">Add to Cart</button>
+                    <button class="btn btn-primary add-to-cart"
+                    data-title="Ancient Souls"
+                    data-price="39.99"
+                    data-image="./images/Ancient Souls.avif"
+                    >Add to Cart</button>
                 </div>
                  
                 <div class="product-card">
@@ -187,7 +217,10 @@
                     <h3>Chronosplit</h3>
                     <p class="price">$39.99</p>
                    </a>
-                    <button class="btn btn-primary">Add to Cart</button>
+                    <button class="btn btn-primary add-to-cart"
+                    data-title="Chronosplit"
+                    data-price="39.99"
+                    data-image="./images/Chronosplit disk.avif">Add to Cart</button>
                 </div>
                 
                
@@ -283,7 +316,7 @@
                     <p class="price">$26.99</p>
                     </div>
                     </a>
-                    <button class="btn btn-primary">Add to Cart</button>
+                    <button class="btn btn-primary add-to-cart">Add to Cart</button>
                 </div>
 
                 <div class="product-card">
@@ -292,7 +325,7 @@
                     <h3>Echo Headset</h3>
                     <p class="price">$36.99</p>
                     </a>
-                    <button class="btn btn-primary">Add to Cart</button>
+                    <button class="btn btn-primary add-to-cart">Add to Cart</button>
                 </div>
 
                 <div class="product-card">
@@ -301,7 +334,7 @@
                     <h3>Impact gaming chair</h3>
                     <p class="price">$159.99</p>
                     </a>
-                    <button class="btn btn-primary">Add to Cart</button>
+                    <button class="btn btn-primary add-to-cart">Add to Cart</button>
                 </div>
 
                  <div class="product-card sale">
@@ -314,7 +347,7 @@
                     <p class="price">$116.99</p>
                     </div>
                     </a>
-                    <button class="btn btn-primary">Add to Cart</button>
+                    <button class="btn btn-primary add-to-cart">Add to Cart</button>
                  </div>
                  
                 <div class="product-card">
@@ -323,7 +356,7 @@
                     <h3>X-2 Wireless Mouse</h3>
                     <p class="price">$24.99</p>
                     </a>
-                    <button class="btn btn-primary">Add to Cart</button>
+                    <button class="btn btn-primary add-to-cart">Add to Cart</button>
                 </div>
 
                 <div class="product-card">
@@ -332,7 +365,7 @@
                     <h3>Blaze Wireless Mouse</h3>
                     <p class="price">$24.99</p>
                    </a>
-                    <button class="btn btn-primary">Add to Cart</button>
+                    <button class="btn btn-primary add-to-cart">Add to Cart</button>
                 </div>
                 
                 <div class="product-card sale">
@@ -345,7 +378,7 @@
                      <p class="price">$40.49</p>
                    </div>
                     </a>
-                    <button class="btn btn-primary">Add to Cart</button>
+                    <button class="btn btn-primary add-to-cart">Add to Cart</button>
                 </div>
 
                 <div class="product-card">
@@ -354,7 +387,7 @@
                     <h3>CO-21 Mechanical Keyboard</h3>
                     <p class="price">$24.99</p>
                     </a>
-                    <button class="btn btn-primary">Add to Cart</button>
+                    <button class="btn btn-primary add-to-cart">Add to Cart</button>
                 </div>
 
                
@@ -408,7 +441,7 @@
                     <p class="price">$35.99</p>
                     </div>
                     </a>
-                    <button class="btn btn-primary">Add to Cart</button>
+                    <button class="btn btn-primary add-to-cart">Add to Cart</button>
                 </div>
 
                  <div class="product-card sale">
@@ -421,7 +454,7 @@
                     <p class="price">$35.99</p>
                     </div>
                     </a>
-                    <button class="btn btn-primary">Add to Cart</button>
+                    <button class="btn btn-primary add-to-cart">Add to Cart</button>
                  </div>
                
                 <div class="product-card">
@@ -430,7 +463,7 @@
                     <h3>Ancient Souls</h3>
                     <p class="price">$39.99</p>
                     </a>
-                    <button class="btn btn-primary">Add to Cart</button>
+                    <button class="btn btn-primary add-to-cart">Add to Cart</button>
                 </div>
 
                 <div class="product-card sale">
@@ -443,7 +476,7 @@
                     <p class="price">$35.99</p>
                     </div>
                     </a>
-                    <button class="btn btn-primary">Add to Cart</button>
+                    <button class="btn btn-primary add-to-cart">Add to Cart</button>
                 </div>
 
                 <div class="product-card">
@@ -452,7 +485,7 @@
                     <h3>Chronosplit</h3>
                     <p class="price">$39.99</p>
                     </a>
-                    <button class="btn btn-primary">Add to Cart</button>
+                    <button class="btn btn-primary add-to-cart">Add to Cart</button>
                 </div>
 
                 <div class="product-card">
@@ -461,7 +494,7 @@
                     <h3>Cyber Kid Infinite</h3>
                     <p class="price">$39.99</p>
                     </a>
-                    <button class="btn btn-primary">Add to Cart</button>
+                    <button class="btn btn-primary add-to-cart">Add to Cart</button>
                 </div>
 
            
@@ -484,7 +517,7 @@
       </p>
     </div>
 
-    <div class="email-input">
+    <form class="email-input">
       <div class="input-wrapper">
         <p>Email*</p>
         <input type="email" placeholder="Enter your email" required>
@@ -497,7 +530,7 @@
         </label>
         <button class="btn btn-primary">Submit</button>
       </div>
-    </div>
+    </form>
   </div>
 
   <div class="newsletter-bottom">
@@ -507,7 +540,10 @@
 
 
 
+
        
+
+
     </main>
    <footer class="footer">
   <div class="upper">
@@ -577,6 +613,51 @@
      </div>
    </footer>
 
+   <div class="cart-overlay">
+
+    <aside class="cart-drawer">
+      <header class="cart-header">
+        <h3>Cart (<span id="cart-count">0</span> item)</h3>
+        <button class="cart-close">X</button>
+      </header>
+
+      <div class="cart-items"></div>
+
+      <footer class="cart-footer">
+        <div class="promo">
+          <span>🏷</span>
+          <button class="promo-toggle">Enter a promo code</button>
+        </div>
+
+        <div class="promo-form hidden">
+          <input type="text" placeholder="Promo code">
+          <button class="apply">Apply</button>
+        </div>
+
+        <div class="summary">
+          <div class="row">
+            <span>Estimated total</span>
+            <span>$0.00</span>
+          </div>
+          <p class="tax-note">
+            Taxes and shipping are calculated at checkout.
+          </p>
+        </div>
+
+        <div class="cart-btn">
+
+          <button class="btn checkout">Checkout</button>
+          <a href="./view-cart.html">
+            <button class="btn outline">View Cart</button>
+          </a>
+
+        </div>
+
+        <p class="secure">🔒 Secure Checkout</p>
+      </footer>
+    </aside>
+   </div>
+
     <script src="./carousel.js"></script>
     <script>
   const burger = document.querySelector('.header__burger');
@@ -585,7 +666,145 @@
   burger.addEventListener('click', () => {
     nav.classList.toggle('is-open');
   });
+
+  
+
+  
+
+
+
+let cart = [];
+
+const cartDrawer = document.querySelector('.cart-drawer');
+const cartOverlay = document.querySelector('.cart-overlay');
+
+function openCart() {
+  cartDrawer.classList.add('open');
+  cartOverlay.classList.add('active');
+}
+
+function closeCart() {
+  cartDrawer.classList.remove('open');
+  cartOverlay.classList.remove('active');
+}
+
+document.querySelector('.cart-close').addEventListener('click', closeCart);
+document.querySelector('.cart-btn').addEventListener('click', openCart);
+cartOverlay.addEventListener('click', closeCart);
+
+cartDrawer.addEventListener('click', (e) => {
+  e.stopPropagation();
+
+  });
+
+
+const cartItemsContainer = document.querySelector('.cart-items');
+const cartCount = document.getElementById('cart-count');
+
+document.querySelectorAll('.add-to-cart').forEach(btn => {
+  btn.addEventListener('click', () => {
+
+    const product = {
+      title: btn.dataset.title,
+      price: Number(btn.dataset.price),
+      image: btn.dataset.image,
+      qty: 1
+    };
+
+    const existing = cart.find(item => item.title === product.title);
+
+    if (existing) {
+      existing.qty++;
+    } else {
+      cart.push(product);
+    }
+
+    renderCart();
+    openCart();
+  });
+});
+
+function renderCart() {
+  cartItemsContainer.innerHTML = '';
+
+  let total = 0;
+  let count = 0;
+
+  cart.forEach(item => {
+    total += item.price * item.qty;
+    count += item.qty;
+
+    cartItemsContainer.innerHTML += `
+  <div class="cart-item">
+    <img class="cart-thumb" src="${item.image}" alt="${item.title}">
+
+    <div class="cart-middle">
+      <div class="cart-header-row">
+        <p class="cart-title">${item.title}</p>
+        
+      </div>
+
+      <p class="cart-price">$${item.price.toFixed(2)}</p>
+
+      <div class="cart-qty">
+        <button onclick="changeQty('${item.title}', -1)">−</button>
+        <span>${item.qty}</span>
+        <button onclick="changeQty('${item.title}', 1)">+</button>
+      </div>
+    </div>
+
+    <div class="cart-total">
+      <button class="remove" data-title="${item.title}">🗑</button>
+      $${(item.price * item.qty).toFixed(2)}
+    </div>
+  </div>
+`;
+
+   document.getElementById('cart-badge').textContent = count;
+
+  });
+
+  cartCount.textContent = count;
+  document.querySelector('.summary .row span:last-child').textContent = `$${total.toFixed(2)}`;
+}
+
+
+function changeQty(title, amount) {
+  const item = cart.find(i => i.title === title);
+  if (!item) return;
+
+  item.qty += amount;
+
+  if (item.qty <= 0) {
+    cart = cart.filter(i => i.title !== title);
+  }
+
+  renderCart();
+}
+
+cartItemsContainer.addEventListener('click', (e) => {
+  if (e.target.classList.contains('remove')) {
+    const title = e.target.dataset.title;
+    cart = cart.filter(item => item.title !== title);
+    renderCart();
+  }
+});
+
+
+
+const promoToggle = document.querySelector('.promo-toggle');
+const promoForm = document.querySelector('.promo-form');
+
+promoToggle.addEventListener('click', () => {
+  promoForm.classList.toggle('hidden');
+});
+
+
+
 </script>
+
+
+
 
 </body>
 </html>

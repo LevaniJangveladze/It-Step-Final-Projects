@@ -2,7 +2,7 @@
   width: 100%;
   min-height: 100px;
   padding: 10px 0;
-  background: url("../images/Header purple background.avif") center / cover no-repeat;
+  background: url("../images/Header\ purple\ background.avif") center / cover no-repeat;
   display: flex;
   position: relative;
 
@@ -50,9 +50,12 @@
     display: flex;
     align-items: center;
     gap: 8px;
+  
+   
 
     &:hover {
       opacity: 0.7;
+      
     }
 
     img {
@@ -73,6 +76,19 @@
   border: none;
   padding: 0;
   cursor: pointer;
+
+  position: relative;
+
+  .cart-badge {
+  position: absolute;
+  top: -6px;
+  right: -6px;
+  background: #8858ed;
+  color: #fff;
+  font-size: 12px;
+  padding: 2px 6px;
+  border-radius: 999px;
+}
   }
 
   

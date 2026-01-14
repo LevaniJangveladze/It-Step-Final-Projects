@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+   <link rel="stylesheet" href="./SCSS/main.css">
+</head>
+<body class="products-page">
+    <header class="header">
+  <div class="header__container">
+
+   
+    <div class="header__logo">
+      <img src="./images/Arcade logo.jpeg" alt="Arcade Logo">
+      <span class="header__logo-text">Arcade</span>
+    </div>
+
+   
+    <div class="header__right">
+
+      
+      <button class="header__burger" aria-label="Open menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+
+      
+      <nav class="header__nav">
+        <ul>
+          <li><a href="products.html" class="active">Products</a></li>
+          <li><a href="onsale.html">On Sale</a></li>
+          <li><a href="contact.html">Contact Us</a></li>
+          <li class="login-link">
+            <a href="#">
+              <img src="./images/log in headedr oic.png" alt="login">
+              Log In
+            </a>
+          </li>
+        </ul>
+      </nav>
+
+      
+      <div class="header__icons">
+        <button class="icon-btn">
+          <img src="./images/shopping-cart.png" alt="Cart">
+        </button>
+      </div>
+
+    </div>
+  </div>
+</header>
+
+<section class="products-layout">
+
+   <div class="products-container">
+
+     <nav class="breadcrumb">
+        <a href="index.html" class="breadcrumb-home">Home</a>
+        <span>&gt;</span>
+        <span class="current">All Products</span>
+    </nav>
+
+   
+<div class="products-body">
+  <aside class="filter">
+    
+   
+
+
+    
+    <div class="filter-group">
+      <div class="browse">
+        <h3>Browse by</h3>
+      </div>
+
+      <ul class="browse-list">
+        <li class="active all">All products</li>
+        <li>Accessories</li>
+        <li class="active">Best Sellers</li>
+        <li>Consoles</li>
+        <li>Controllers</li>
+        <li>Games</li>
+        <li class="active">On Sale</li>
+      </ul>
+    </div>
+
+     <div class="filter-heading">
+                <h3>Filter by</h3>
+            </div>
+
+   
+    <div class="filter-group price-filter">
+
+      <div class="filter-title">
+        <h3>Price</h3>
+        <button class="toggle-price" aria-label="Toggle price filter">−</button>
+      </div>
+
+      <div class="price-content">
+        <input
+          type="range"
+          min="24"
+          max="1000"
+          value="1000"
+          id="priceRange"
+        >
+
+        <div class="price-values">
+          <span>$24</span>
+          <span>$1,000</span>
+        </div>
+      </div>
+
+    </div>
+
+  </aside>
+
+   <main class="products-content">
+        <div class="products-header">
+            <div class="all26">
+                <h1>All Products</h1>
+                <p>21 products</p>
+            </div>
+
+            <button class="filter-toggle">
+                  Filter & Sort
+                </button>
+
+             <select id="sort">
+        <option value="recommended">Recommended</option>
+        <option value="newest">Newest</option>
+        <option value="price-low">Price: Low to High</option>
+        <option value="price-high">Price: High to Low</option>
+        <option value="az">Name: A–Z</option>
+        <option value="za">Name: Z–A</option>
+            </select>
+        </div>
+
+        <div class="products-grid" id="productsGrid">
+            
+            <div class="product-card sale">
+                    <span class="badge-sale">SALE</span>
+                    <a href="#" class="product-link">
+                    <img src="./images/Gameflow Black.avif" alt="Gameflow">
+                    <h3>Gameflow Black</h3>
+                    <div class="price-row">
+                    <p class="old-price">$29.99</p>
+                    <p class="price">$26.99</p>
+                    </div>
+                    </a>
+                    <button class="btn btn-primary">Add to Cart</button>
+                </div>
+
+                 <div class="product-card">
+                    <a href="#" class="product-link">
+                    <img src="./images/Playbox.avif" alt="Playbox">
+                    <h3>CO-21 Mechanical Keyboard</h3>
+                    <p class="price">$24.99</p>
+                    </a>
+                    <button class="btn btn-primary">Add to Cart</button>
+                </div>
+
+                  <div class="product-card sale">
+                    <span class="badge-sale">SALE</span>
+                    <a href="#" class="product-link">
+                    <img src="./images/Earphone-products.avif" alt="L503 Headset">
+                    <h3>L503 Headset</h3>
+                    <div class="price-row">
+                    <p class="old-price">$29.99</p>
+                    <p class="price">$26.99</p>
+                    </div>
+                    </a>
+                    <button class="btn btn-primary">Add to Cart</button>
+                </div>
+
+                <div class="product-card">
+                    <a href="#" class="product-link">
+                    <img src="./images/Echo Headset.avif" alt="Echo">
+                    <h3>CO-21 Mechanical Keyboard</h3>
+                    <p class="price">$24.99</p>
+                    </a>
+                    <button class="btn btn-primary">Add to Cart</button>
+                </div>
+
+                <div class="product-card">
+                    <a href="#" class="product-link">
+                    <img src="./images/Impact chair.avif" alt="Impact">
+                    <h3>CO-21 Mechanical Keyboard</h3>
+                    <p class="price">$24.99</p>
+                    </a>
+                    <button class="btn btn-primary">Add to Cart</button>
+                </div>
+
+                <div class="product-card sale">
+                    <span class="badge-sale">SALE</span>
+                    <a href="#" class="product-link">
+                    <img src="./images/Mach chair.avif" alt="Mach gaming chair">
+                    <h3>Mach gaming chair</h3>
+                    <div class="price-row">
+                    <p class="old-price">$129.99</p>
+                    <p class="price">$116.99</p>
+                    </div>
+                    </a>
+                    <button class="btn btn-primary">Add to Cart</button>
+                 </div>
+
+                 <div class="product-card">
+                    <a href="#" class="product-link">
+                    <img src="./images/x2 mouse.avif" alt="X2">
+                    <h3>X-2 Wireless Mouse</h3>
+                    <p class="price">$24.99</p>
+                    </a>
+                    <button class="btn btn-primary">Add to Cart</button>
+                </div>
+
+                <div class="product-card">
+                    <a href="#" class="product-link">
+                    <img src="./images/Blaze mouse.avif" alt="Blaze">
+                    <h3>Blaze Wireless Mouse</h3>
+                    <p class="price">$24.99</p>
+                    </a>
+                    <button class="btn btn-primary">Add to Cart</button>
+                </div>
+
+                <div class="product-card sale">
+                    <span class="badge-sale">SALE</span>
+                    <a href="#" class="product-link">
+                    <img src="./images/Spartan keyboard.avif" alt="Spartan Mechanical Keyboard">
+                    <h3>Spartan Mechanical Keyboard</h3>
+                    <div class="price-row">
+                     <p class="old-price">$44.99</p>
+                     <p class="price">$40.49</p>
+                   </div>
+                    </a>
+                    <button class="btn btn-primary">Add to Cart</button>
+                </div>
+                
+                <div class="product-card">
+                    <a href="#" class="product-link">
+                    <img src="./images/CO keyboard.avif" alt="CO">
+                    <h3>CO-21 Mechanical Keyboard</h3>
+                    <p class="price">$44.99</p>
+                    </a>
+                    <button class="btn btn-primary">Add to Cart</button>
+                </div>
+               
+                 <div class="product-card sale">
+                    <span class="badge-sale">SALE</span>
+                    <a href="#" class="product-link">
+                    <img src="./images/Ghost.avif" alt="Ghost">
+                    <h3>Ghost</h3>
+                    <div class="price-row">
+                     <p class="old-price">$29.99</p>
+                     <p class="price">$26.99</p>
+                   </div>
+                    </a>
+                    <button class="btn btn-primary">Add to Cart</button>
+                </div>
+
+                <div class="product-card sale">
+                    <span class="badge-sale">SALE</span>
+                    <a href="#" class="product-link">
+                    <img src="./images/Raptor.avif" alt="Raptor">
+                    <h3>Raptor</h3>
+                    <div class="price-row">
+                     <p class="old-price">$29.99</p>
+                     <p class="price">$26.99</p>
+                   </div>
+                    </a>
+                    <button class="btn btn-primary">Add to Cart</button>
+                </div>
+
+                <div class="product-card">
+                    <a href="#" class="product-link">
+                    <img src="./images/Flint.avif" alt="Flint">
+                    <h3>Flint</h3>
+                    <p class="price">$29.99</p>
+                    </a>
+                    <button class="btn btn-primary">Add to Cart</button>
+                </div>
+
+                 <div class="product-card">
+                    <a href="#" class="product-link">
+                    <img src="./images/Libra.jpg" alt="Libra">
+                    <h3>Libra 2.0</h3>
+                    <p class="price">$29.99</p>
+                    </a>
+                    <button class="btn btn-primary">Add to Cart</button>
+                </div>
+
+                 <div class="product-card">
+                    <a href="#" class="product-link">
+                    <img src="./images/Stealth.avif" alt="Stealth">
+                    <h3>Stealth X</h3>
+                    <p class="price">$29.99</p>
+                    </a>
+                    <button class="btn btn-primary">Add to Cart</button>
+                </div>
+
+                 <div class="product-card">
+                    <a href="#" class="product-link">
+                    <img src="./images/Wave.avif" alt="Wave">
+                    <h3>Wave</h3>
+                    <p class="price">$29.99</p>
+                    </a>
+                    <button class="btn btn-primary">Add to Cart</button>
+                </div>
+
+                 <div class="product-card">
+                    <a href="#" class="product-link">
+                    <img src="./images/Veritas.avif" alt="Veritas">
+                    <h3>Veritas VR Set</h3>
+                    <p class="price">$629.99</p>
+                    </a>
+                    <button class="btn btn-primary">Add to Cart</button>
+                </div>
+
+                <div class="product-card sale">
+                    <span class="badge-sale">SALE</span>
+                    <a href="#" class="product-link">
+                    <img src="./images/Gameflow white.avif" alt="Gameflow white">
+                    <h3>Gameflow</h3>
+                    <div class="price-row">
+                     <p class="old-price">$579.99</p>
+                     <p class="price">$521.99</p>
+                   </div>
+                    </a>
+                    <button class="btn btn-primary">Add to Cart</button>
+                </div>
+
+                <div class="product-card">
+                    <a href="#" class="product-link">
+                    <img src="./images/Playbox.avif" alt="Playbox XZ">
+                    <h3>Playbox XZ</h3>
+                    <p class="price">$579.99</p>
+                    </a>
+                    <button class="btn btn-primary">Add to Cart</button>
+                </div>
+
+                <div class="product-card">
+                    <a href="#" class="product-link">
+                    <img src="./images/Wave Gen RX.avif" alt="`WaveGen">
+                    <h3>Playbox XZ</h3>
+                    <p class="price">$579.99</p>
+                    </a>
+                    <button class="btn btn-primary">Add to Cart</button>
+                </div>
+
+                <div class="product-card sale">
+                    <span class="badge-sale">SALE</span>
+                    <a href="#" class="product-link">
+                    <img src="./images/Dead at Last.avif" alt="Dead at Last">
+                    <h3>Dead at Last</h3>
+                    <div class="price-row">
+                     <p class="old-price">$39.99</p>
+                     <p class="price">$35.99</p>
+                   </div>
+                    </a>
+                    <button class="btn btn-primary">Add to Cart</button>
+                </div>
+
+                </div> 
+
+       </main>
+    </div>
+
+   </div>
+    
+</section>
+
+    
+
+   
+
+ <footer class="footer">
+  <div class="upper">
+
+       <div class="img-arcade">
+        <img src="./images/Arcade logo.jpeg" alt="arclogo">
+        <h2>Arcade</h2>
+     </div>
+     
+     <div class="products">
+        <nav>
+            <ul>
+                <li><a href="#" class="prod">Products</a></li>
+                <li><a href="#">Games</a></li>
+                <li><a href="#">Consoles</a></li>
+                <li><a href="#">Controllers</a></li>
+                <li><a href="#">Accessories</a></li>
+            </ul>
+        </nav>
+     </div>
+
+     <div class="store">
+        <p class="storebold">Store</p>
+        <p>500 Terry Francine Street <br>
+        San francisco, CA 94158</p>
+        <p>Mon - Fri:9am - 9pm</p>
+        <p>info@mysite.com</p>
+        <p>123-456-7890</p>
+     </div>
+
+     <div class="policy">
+        <p class="policybold">Policy</p>
+        <p>Terms & Conditions</p>
+        <p>Shipping Policy</p>
+        <p>Refund Policy</p>
+        <p>Privacy Policy</p>
+        <p>Cookie Policy</p>
+        <p>FAQ</p>
+     </div>
+  </div>
+
+     <div class="belowfooter">
+
+       <div class="left">
+         <p>Payment Methods</p>
+        <div class="paymentcards">
+            <img src="./images/VISA.avif" alt="visa">
+            <img src="./images/Master Card.png" alt="master">
+            <img src="./images/American Express.png" alt="american">
+            <img src="./images/JCB.png" alt="jcb">
+            <img src="./images/Discover.png" alt="discover">
+            <img src="./images/China Union Pay.png" alt="china">
+            <img src="./images/Diners.png" alt="diners">
+            <img src="./images/PayPal.png" alt="paypal">
+        </div>
+       </div>
+
+       <div class="right">
+        <p>Join The Community</p>
+        <div class="social">
+            <img src="./images/fb logo.png" alt="fb">
+            <img src="./images/insta logo.png" alt="insta">
+            <img src="./images/3 logo.png" alt="youtube">
+            <img src="./images/tiktok logo.png" alt="tiktok">
+        </div>
+       </div>
+     </div>
+   </footer>
+
+<script>
+  const toggleBtn = document.querySelector('.toggle-price');
+  const priceFilter = document.querySelector('.price-filter');
+
+  toggleBtn.addEventListener('click', () => {
+    priceFilter.classList.toggle('collapsed');
+    toggleBtn.textContent =
+      priceFilter.classList.contains('collapsed') ? '+' : '−';
+  });
+
+
+  const cards = document.querySelectorAll('.product-card');
+
+  const observer = new IntersectionObserver(
+    entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    },
+    { threshold: 0.15 }
+  );
+
+  cards.forEach(card => observer.observe(card));
+</script>
+
+</body>
+</html>

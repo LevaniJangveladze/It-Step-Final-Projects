@@ -1,0 +1,643 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./SCSS/main.css">
+</head>
+<body>
+     <header class="item-header">
+  <div class="header__container">
+
+   
+    <div class="header__logo">
+      <img src="./images/Arcade logo.jpeg" alt="Arcade Logo">
+      <span class="header__logo-text">Arcade</span>
+    </div>
+
+   
+    <div class="header__right">
+
+      
+      <button class="header__burger" aria-label="Open menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+
+      
+      <nav class="header__nav">
+        <ul>
+          <li><a href="products.html" class="active">Products</a></li>
+          <li><a href="onsale.html">On Sale</a></li>
+          <li><a href="contact.html">Contact Us</a></li>
+          <li class="login-link">
+            <a href="#">
+              <img src="./images/log in headedr oic.png" alt="login">
+              Log In
+            </a>
+          </li>
+        </ul>
+      </nav>
+
+      
+      <div class="header__icons">
+        <button class="icon-btn cart-btn">
+          <img src="./images/shopping-cart.png" alt="Cart">
+          <span class="cart-badge" id="cart-badge">0</span>
+        </button>
+      </div>
+
+    </div>
+  </div>
+</header>
+
+<main class="item-page">
+  <div class="item-container">
+
+  
+    <div class="item-left">
+
+      <nav class="breadcrumb">
+        <a href="index.html">Home</a>
+        <span>/</span>
+        <span>Playbox XZ Gold Edition</span>
+      </nav>
+
+      <div class="item-image">
+        <img src="./images/Playbox.avif" alt="">
+      </div>
+
+      <div class="description">
+        <p>
+          I'm a product description. This is a great place to "sell" your product and grab buyers' attention. Describe your product clearly and concisely. Use unique keywords. Write your own description instead of using manufacturers' copy.
+        </p>
+      </div>
+
+      <section class="item-reviews">
+
+        <div class="reviews-header">
+          <h2>Reviews</h2>
+          <p>★★★★☆ 4.6</p>
+          <button id="leave-review-btn">Leave a Review</button>
+          <p class="reviews-count">1 review</p>
+        </div>
+
+        
+
+        <div class="reviews-list">
+          <article class="review"></article>
+          <article class="review"></article>
+          <article class="review"></article>
+        </div>
+
+      </section>
+    </div>
+
+    
+    <div class="item-right">
+
+      <h1>Playbox XZ <br> Gold Edition</h1>
+      <p>★★★★★ <span>4.6 | 5 reviews</span></p>
+
+      <p class="sku">SKU: 0002</p>
+      <p class="price">$1,000.00</p>
+
+      <div class="quantity">
+        <button>-</button>
+        <span>1</span>
+        <button>+</button>
+      </div>
+
+      <div class="buttons">
+        <button class="btn primary">Add to Cart</button>
+        <button class="btn outline">Buy Now</button>
+      </div>
+
+      
+      <div class="info">
+        <div class="info-header">
+          <h3>Product Info</h3>
+          <button class="toggle-info">+</button>
+        </div>
+        <div class="info-content">
+          <p>I'm a product detail...</p>
+        </div>
+      </div>
+
+      <div class="info">
+        <div class="info-header">
+          <h3>Return and Refund Policy</h3>
+          <button class="toggle-info">+</button>
+        </div>
+        <div class="info-content">
+          <p>I’m a Return and Refund policy...</p>
+        </div>
+      </div>
+
+      <div class="info">
+        <div class="info-header">
+          <h3>Shipping Info</h3>
+          <button class="toggle-info">+</button>
+        </div>
+        <div class="info-content">
+          <p>I'm a shipping policy...</p>
+        </div>
+      </div>
+
+      
+      <div class="rating-breakdown">
+
+        <div class="bar"><span>5 stars</span><div class="track"><div class="fill w60"></div></div><span>3</span></div>
+        <div class="bar"><span>4 stars</span><div class="track"><div class="fill w40"></div></div><span>2</span></div>
+        <div class="bar zero"><span>3 stars</span><div class="track"></div><span>0</span></div>
+        <div class="bar zero"><span>2 stars</span><div class="track"></div><span>0</span></div>
+        <div class="bar zero"><span>1 stars</span><div class="track"></div><span>0</span></div>
+
+      </div>
+
+      <div class="reviews-controls">
+        <select><option>All stars</option>
+                <option>5 stars</option>
+                <option>4 stars</option>
+                <option>3 stars</option>
+                <option>2 stars</option>
+                <option>1 star</option>
+        </select>
+        <select><option>Most relevant</option>
+                <option>Newest</option>
+                <option>Oldest</option>
+                <option>Most helpful</option>
+                <option>Highest rated</option>
+                <option>Lowest rated</option>
+        </select>
+      </div>
+
+      <hr class="divider">
+
+    </div>
+
+       <div class="review-form hidden" id="review-form">
+
+            <label>
+              <p> Name* <span>(this appears publicly)</span></p>
+               <input type="text" required class="review-input">
+            </label>
+
+            <label>
+                Add a rating*
+                <div class="star-rating">
+                  <span class="star" data-value="1">★</span>
+                  <span class="star" data-value="2">★</span>
+                  <span class="star" data-value="3">★</span>
+                  <span class="star" data-value="4">★</span>
+                  <span class="star" data-value="5">★</span>
+                </div>
+            </label>
+
+            <label>
+                Review title* 
+                <input type="text" required class="review-input">
+            </label>
+
+            <label>
+                Review* 
+                <textarea required class="review-input"></textarea>
+            </label>
+
+            <div class="form-actions">
+                <button type="button" class="btn outline" id="cancel-review">Cancel</button>
+                <button type="submit" class="btn primary">Publish</button>
+            </div>
+        </div>
+   
+
+        
+  </div>
+
+  
+
+
+  
+
+    <section class="comments">
+       <div class="inner-comments">
+        <div class="up3dots">
+             <p>Ava Howard • Apr 25, 2022</p>
+             <div class="dots-btn">
+                <button> <img src="./images/menu.png" alt=""></button>
+
+                <div class="dots-menu hidden">
+                    <button class="menu-item">
+                        <span class="icon">🔗</span>Copy link
+                    </button>
+
+                    <button class="menu-item">
+                        <span class="icon">✏️</span>Edit review
+                    </button>
+
+                    <hr>
+
+                    <button class="menu-item danger">
+                        <span class="icon">🗑</span>Delete review
+                    </button>
+                </div>
+             </div>
+        </div>
+         <div class="stars">
+         <span class="star-filled">★</span>
+         <span class="star-filled">★</span>
+         <span class="star-filled">★</span>
+         <span class="star-filled">★</span>
+         <span class="star">★</span>
+
+         <div class="verified-badge">
+            <span class="check">✔</span>
+            <span class="text">Verified</span>
+
+            <div class="verified-tooltip">
+               A “Verified” badge means we’ve verified that the reviewer bought this product.
+               It doesn’t mean that reviews without this badge are dishonest or fake, just that
+               we haven’t been able to verify them. 
+            </div>
+         </div>
+        </div>
+        <h3>Highly recommend</h3>
+        <p>The online shopping experience was very easy and smooth. I was a bit hesitant if this is right for me. Though there is a lot of relevant information on their site I still wanted to double-check some product specs, like the material and dimensions. Their agents were so professional, attentive and provided very accurate information.
+
+Overall, I am quite satisfied with their quality.</p>
+
+       <div class="helpful">
+        <p>Was this helpful?</p>
+        <div class="like">
+            <img src="./images/like.png" alt="likebutton">
+            <p>(1)</p>
+        </div>
+       </div>
+
+       <div class="store-owner">
+        <div class="store-inner">
+            <p>Store Owner • Apr 26, 2022</p>
+            <button>
+                <img src="./images/menu.png" alt="3dots">
+            </button>
+        </div>
+        <p>Thank you so much!</p>
+        
+       </div>
+       </div>
+    </section>
+
+    <section class="item-carousel">
+        <h2>You might Also like</h2>
+
+        <div class="carousel">
+
+            <button class="arrow left" aria-label="Prev">&#10094</button>
+
+            <div class="carousel-track" role="list">
+
+            <div class="product-card">
+               <a href="item.html" class="product-link" role="listitem">
+                <img src="./images/Playbox.avif" alt="Playbox XZ Gold">
+                <h3>Playbox XZ Gold Edition</h3>
+                <p class="price">$1,000.00</p>
+               </a>
+                <button class="btn btn-primary add-to-cart"
+                data-title="Playbox XZ Gold Edition"
+                data-price="1000.00"
+                data-image="./images/Playbox.avif">Add to Cart
+              </button>
+            </div>
+
+                <div class="product-card">
+                    <a href="#" class="product-link">
+                    <img src="./images/Echo Headset.avif" alt="Echo headset">
+                    <h3>Echo Headset</h3>
+                    <p class="price">$36.99</p>
+                    </a>
+                    <button class="btn btn-primary add-to-cart"
+                    data-title="Echo Headset"
+                    data-price="36.99"
+                    data-image="./images/Echo Headset.avif">Add to Cart</button>
+                    
+                </div>
+
+                <div class="product-card sale">
+                    <span class="badge-sale">SALE</span>
+                    <a href="#" class="product-link">
+                    <img src="./images/Mach chair.avif" alt="Mach gaming chair">
+                    <h3>Mach gaming chair</h3>
+                    <div class="price-row">
+                    <p class="old-price">$129.99</p>
+                    <p class="price">$116.99</p>
+                    </div>
+                    </a>
+                    <button class="btn btn-primary add-to-cart"
+                    data-title="Mach gaming chair"
+                    data-price="116.99"
+                    data-image="./images/Mach chair.avif">Add to Cart</button>
+                    
+                </div>
+
+                <div class="product-card">
+                    <a href="#" class="product-link">
+                        <img src="./images/x2 mouse.avif" alt="x2 mouse">
+                    <h3>X-2 Wireless Mouse</h3>
+                    <p class="price">$24.99</p>
+                    </a>
+                    <button class="btn btn-primary add-to-cart"
+                    data-title="X-2 Wireless Mouse"
+                    data-price="24.99"
+                    data-image="./images/x2 mouse.avif">Add to Cart</button>
+                </div>
+
+                <div class="product-card sale">
+                    <span class="badge-sale">SALE</span>
+                    <a href="#" class="product-link">
+                        <img src="./images/Spartan keyboard.avif" alt="Spartan Mechanical Keyboard">
+                    <h3>Spartan Mechanical Keyboard</h3>
+                    <div class="price-row">
+                    <p class="old-price">$44.99</p>
+                    <p class="price">$40.49</p>
+                    </div>
+                    </a>
+                    <button class="btn btn-primary add-to-cart"
+                    data-title="Spartan Mechanical Keyboard"
+                    data-price="40.49"
+                    data-image="./images/Spartan keyboard.avif">Add to Cart</button>
+                </div>
+
+                <div class="product-card sale">
+                    <span class="badge-sale">SALE</span>
+                    <a href="#" class="product-link">
+                        <img src="./images/Raptor.avif" alt="Raptor">
+                    <h3>Raptor</h3>
+                    <div class="price-row">
+                    <p class="old-price">$29.99</p>
+                    <p class="price">$26.99</p>
+                    </div>
+                    </a>
+                    <button class="btn btn-primary add-to-cart"
+                    data-title="Raptor"
+                    data-price="26.99"
+                    data-image="./images/Raptor.avif">Add to Cart</button>
+                </div>
+                
+                <div class="product-card">
+                    <a href="#" class="product-link">
+                        <img src="./images/Wave.avif" alt="Wavecontroller">
+                    <h3>Wave</h3>
+                    <p class="price">$29.99</p>
+                    </a>
+                    <button class="btn btn-primary add-to-cart"
+                    data-title="Wave"
+                    data-price="29.99"
+                    data-image="./images/Wave.avif">Add to Cart</button>
+                </div>
+
+                <div class="product-card">
+                    <a href="#" class="product-link">
+                        <img src="./images/Wave Gen RX.avif" alt="Wave Gen RX">
+                    <h3>Wave Gen RX</h3>
+                    <p class="price">$579.99</p>
+                    </a>
+                    <button class="btn btn-primary add-to-cart"
+                    data-title="Wave Gen RX"
+                    data-price="579.99"
+                    data-image="./images/Wave Gen RX.avif">Add to Cart</button>
+                </div>
+
+                <div class="product-card">
+                    <a href="#" class="product-link">
+                        <img src="./images/Ancient Souls.avif" alt="Ancient Souls">
+                    <h3>Ancient Souls</h3>
+                    <p class="price">$39.99</p>
+                    </a>
+                    <button class="btn btn-primary add-to-cart"
+                    data-title="Ancient Souls"
+                    data-price="39.99"
+                    data-image="./images/Ancient Souls.avif"
+                    >Add to Cart</button>
+                </div>
+                 
+                <div class="product-card">
+                   <a href="#" class="product-link">
+                     <img src="./images/Chronosplit disk.avif" alt="Chronosplitdisk">
+                    <h3>Chronosplit</h3>
+                    <p class="price">$39.99</p>
+                   </a>
+                    <button class="btn btn-primary add-to-cart"
+                    data-title="Chronosplit"
+                    data-price="39.99"
+                    data-image="./images/Chronosplit disk.avif">Add to Cart</button>
+                </div>
+                
+               
+
+              </div>
+
+             <button class="arrow right">&#10095</button>
+
+            </div>
+    </section>
+  
+  
+</main>
+
+
+
+   <footer class="footer">
+  <div class="upper">
+
+       <div class="img-arcade">
+        <img src="./images/Arcade logo.jpeg" alt="arclogo">
+        <h2>Arcade</h2>
+     </div>
+     
+     <div class="products">
+        <nav>
+            <ul>
+                <li><a href="#" class="prod">Products</a></li>
+                <li><a href="#">Games</a></li>
+                <li><a href="#">Consoles</a></li>
+                <li><a href="#">Controllers</a></li>
+                <li><a href="#">Accessories</a></li>
+            </ul>
+        </nav>
+     </div>
+
+     <div class="store">
+        <p class="storebold">Store</p>
+        <p>500 Terry Francine Street <br>
+        San francisco, CA 94158</p>
+        <p>Mon - Fri:9am - 9pm</p>
+        <p>info@mysite.com</p>
+        <p>123-456-7890</p>
+     </div>
+
+     <div class="policy">
+        <p class="policybold">Policy</p>
+        <p>Terms & Conditions</p>
+        <p>Shipping Policy</p>
+        <p>Refund Policy</p>
+        <p>Privacy Policy</p>
+        <p>Cookie Policy</p>
+        <p>FAQ</p>
+     </div>
+  </div>
+
+     <div class="belowfooter">
+
+       <div class="left">
+         <p>Payment Methods</p>
+        <div class="paymentcards">
+            <img src="./images/VISA.avif" alt="visa">
+            <img src="./images/Master Card.png" alt="master">
+            <img src="./images/American Express.png" alt="american">
+            <img src="./images/JCB.png" alt="jcb">
+            <img src="./images/Discover.png" alt="discover">
+            <img src="./images/China Union Pay.png" alt="china">
+            <img src="./images/Diners.png" alt="diners">
+            <img src="./images/PayPal.png" alt="paypal">
+        </div>
+       </div>
+
+       <div class="right">
+        <p>Join The Community</p>
+        <div class="social">
+            <img src="./images/fb logo.png" alt="fb">
+            <img src="./images/insta logo.png" alt="insta">
+            <img src="./images/3 logo.png" alt="youtube">
+            <img src="./images/tiktok logo.png" alt="tiktok">
+        </div>
+       </div>
+     </div>
+   </footer>
+
+  <script>
+document.querySelectorAll('.info-header').forEach(h => {
+  h.addEventListener('click', () => {
+    const box = h.parentElement;
+    document.querySelectorAll('.info').forEach(i => {
+      if (i !== box) i.classList.remove('active');
+    });
+    box.classList.toggle('active');
+  });
+});
+</script>
+
+
+<script>
+const track = document.querySelector('.carousel-track');
+const leftBtn = document.querySelector('.arrow.left');
+const rightBtn = document.querySelector('.arrow.right');
+
+const scrollAmount = 320;
+
+rightBtn.addEventListener('click', () => {
+  track.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+});
+
+leftBtn.addEventListener('click', () => {
+  track.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
+});
+</script>
+
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  const leaveBtn = document.getElementById('leave-review-btn');
+  const reviewForm = document.getElementById('review-form');
+  const cancelBtn = document.getElementById('cancel-review');
+
+  if (!leaveBtn || !reviewForm) return;
+
+  
+  reviewForm.classList.add('hidden');
+  leaveBtn.classList.remove('hidden');
+
+  leaveBtn.addEventListener('click', () => {
+    reviewForm.classList.remove('hidden');
+    leaveBtn.classList.add('hidden');
+
+    reviewForm.scrollIntoView({
+      behavior: 'smooth',
+      block: 'start'
+    });
+  });
+
+  cancelBtn.addEventListener('click', () => {
+    reviewForm.classList.add('hidden');
+    leaveBtn.classList.remove('hidden');
+  });
+});
+</script>
+
+
+
+<script>
+    const stars = document.querySelectorAll('.star');
+let selectedRating = 0;
+
+stars.forEach(star => {
+
+  
+  star.addEventListener('mouseenter', () => {
+    const value = star.dataset.value;
+    fillStars(value);
+  });
+
+  
+  star.addEventListener('click', () => {
+    selectedRating = star.dataset.value;
+    fillStars(selectedRating);
+  });
+
+});
+
+
+document.querySelector('.star-rating').addEventListener('mouseleave', () => {
+  fillStars(selectedRating);
+});
+
+function fillStars(count) {
+  stars.forEach(star => {
+    if (star.dataset.value <= count) {
+      star.classList.add('filled');
+    } else {
+      star.classList.remove('filled');
+    }
+  });
+}
+
+
+document.addEventListener('click', (e) => {
+
+  const dotsBtn = e.target.closest('.dots-btn');
+
+  // Toggle current menu
+  if (dotsBtn) {
+    const menu = dotsBtn.querySelector('.dots-menu');
+
+    // close all other menus first
+    document.querySelectorAll('.dots-menu').forEach(m => {
+      if (m !== menu) m.classList.add('hidden');
+    });
+
+    menu.classList.toggle('hidden');
+    return;
+  }
+
+  // Click outside → close all
+  document.querySelectorAll('.dots-menu').forEach(menu => {
+    menu.classList.add('hidden');
+  });
+
+});
+
+
+</script>
+</body>
+</html>

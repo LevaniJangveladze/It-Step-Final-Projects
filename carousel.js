@@ -92,7 +92,7 @@ const observer = new IntersectionObserver(
     }
   },
   {
-    threshold: 0.35, // triggers when ~35% visible
+    threshold: 0.35, 
   }
 );
 
