@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product</title>
+    <link rel="stylesheet" href="./main.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body>
+
+  <header>
+    <div class="top-bar">FREE SHIPPING WORLDWIDE</div>
+    <div class="main-header">
+
+      <div class="logo">
+        <a href="./main.html">
+          <p class="p1">Digital<span class="span">Store</span></p>
+        </a>
+      </div>
+
+      <div class="search">
+        <input type="text" id="searchInput" placeholder="Search products..." autocomplete="off"/>
+        <div id="searchResults" class="search-results"></div>
+      </div>
+
+      <div class="actions" id="auth-actions">
+        <div class="action guest-only"><span class="open-signup">Sign up</span></div>
+        <div class="action guest-only"><span class="open-login">Log in</span></div>
+        <div class="action user-only" style="display:none;">
+          <i class="fa-solid fa-user user-icon" id="user-profile-btn"></i>
+        </div>
+        <div class="action user-only" id="cart-btn" style="position:relative;cursor:pointer;">
+          <i class="fa-solid fa-cart-shopping"></i>
+          <span id="cart-count" class="cart-count">0</span>
+        </div>
+        <div class="action user-only" style="display:none;">
+          <span id="logout-btn">Sign out</span>
+        </div>
+      </div>
+
+      <!-- BURGER -->
+      <button class="burger-btn" id="burger-btn" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+
+    </div>
+
+    <!-- MOBILE MENU -->
+    <div class="mobile-menu" id="mobile-menu">
+      <div class="mobile-actions" id="mobile-auth-actions">
+        <div class="mobile-action guest-only"><span class="open-signup">Sign up</span></div>
+        <div class="mobile-action guest-only"><span class="open-login">Log in</span></div>
+        <div class="mobile-action user-only" style="display:none;">
+          <i class="fa-solid fa-user"></i> Profile
+        </div>
+        <div class="mobile-action user-only" id="mobile-cart-btn" style="display:none;position:relative;cursor:pointer;">
+          <i class="fa-solid fa-cart-shopping"></i> Cart
+          <span id="mobile-cart-count" class="cart-count">0</span>
+        </div>
+        <div class="mobile-action user-only" style="display:none;">
+          <span id="mobile-logout-btn">Sign out</span>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <div id="productContainer"></div>
+
+  <footer>
+    <hr>
+    <h3 class="title">We accept the following paying methods</h3>
+    <div class="footer1">
+      <img src="./images/Visa.avif" alt="visacard">
+      <img src="./images/brand-mastercard@3x.avif" alt="mastercard">
+      <img src="./images/brand-amex@3x.avif" alt="brand-amex">
+      <img src="./images/brand-chinaunionpay@3x.avif" alt="brand-chinaunionpay">
+      <img src="./images/brand-jcb@3x.avif" alt="brand-jcb">
+      <img src="./images/Diners.avif" alt="Diners">
+      <img src="./images/Discover.avif" alt="Discover">
+      <img src="./images/PayPal.avif" alt="PayPal">
+    </div>
+  </footer>
+
+  <div id="cart-drawer" class="cart-drawer">
+    <div class="cart-header">
+      <h3>Cart</h3>
+      <span id="close-cart">&times;</span>
+    </div>
+    <div id="cart-items"></div>
+    <div class="cart-footer">
+      <h4>Total: <span id="cart-total">$0</span></h4>
+      <button id="checkout-btn">Proceed to Checkout</button>
+    </div>
+  </div>
+  <div id="cart-overlay" class="cart-overlay"></div>
+
+  <div id="auth-overlay" class="overlay hidden">
+    <div class="auth-modal">
+      <button id="close-auth" class="close-btn">&times;</button>
+      <h2>Create Account</h2>
+      <hr>
+      <form id="signup-form" class="auth-form">
+        <div class="row">
+          <div class="input-group"><i class="fa-solid fa-user"></i><input type="text" id="signup-firstName" placeholder="First Name" required></div>
+          <div class="input-group"><i class="fa-solid fa-user"></i><input type="text" id="signup-lastName" placeholder="Last Name" required></div>
+        </div>
+        <div class="row">
+          <div class="input-group"><i class="fa-solid fa-envelope"></i><input type="email" id="signup-email" placeholder="Email" required></div>
+          <div class="input-group"><i class="fa-solid fa-lock"></i><input type="password" id="signup-password" placeholder="Password" required></div>
+        </div>
+        <div class="row">
+          <div class="input-group"><i class="fa-solid fa-phone"></i><input type="text" id="signup-phone" placeholder="+995 Phone"></div>
+          <div class="input-group"><i class="fa-solid fa-location-dot"></i><input type="text" id="signup-zipCode" placeholder="ZIP Code"></div>
+        </div>
+        <div class="row">
+          <div class="input-group"><i class="fa-solid fa-map"></i><input type="text" id="signup-address" placeholder="Address"></div>
+          <div class="input-group"><i class="fa-solid fa-cake-candles"></i><input type="number" id="signup-age" placeholder="Age"></div>
+        </div>
+        <div class="input-group full"><i class="fa-solid fa-image"></i><input type="text" id="signup-avatar" placeholder="Image URL"></div>
+        <div class="input-group full">
+          <i class="fa-solid fa-venus-mars"></i>
+          <select id="signup-gender">
+            <option value="">Gender</option>
+            <option value="MALE">Male</option>
+            <option value="FEMALE">Female</option>
+          </select>
+        </div>
+        <button type="submit" class="auth-btn">Register</button>
+      </form>
+      <div class="login-wrapper" style="display:none;">
+        <div class="login-left">
+          <h2>Sign In</h2><hr>
+          <form id="signin-form" class="auth-form">
+            <div class="input-group full"><i class="fa-solid fa-envelope"></i><input type="email" id="signin-email" placeholder="Email" required></div>
+            <div class="input-group full"><i class="fa-solid fa-lock"></i><input type="password" id="signin-password" placeholder="Password" required></div>
+            <div class="forgot-password"><span id="forgot-password-btn">Forgot Password?</span></div>
+            <button type="submit" class="auth-btn">Sign In</button>
+          </form>
+        </div>
+        <div class="login-right"><img src="./images/loginlogo.avif" alt="Login IMG"></div>
+      </div>
+    </div>
+  </div>
+
+  <script src="./auth.js"></script>
+  <script src="./cart.js"></script>
+  <script src="./inside-product.js"></script>
+  <script>
+    // Search for inside-product page
+    const searchInput = document.getElementById("searchInput");
+    const searchResults = document.getElementById("searchResults");
+    if (searchInput && searchResults) {
+      let debounceTimeout;
+      searchInput.addEventListener("input", function () {
+        clearTimeout(debounceTimeout);
+        const value = this.value.trim();
+        if (value.length < 2) { searchResults.style.display = "none"; return; }
+        debounceTimeout = setTimeout(() => fetchSearchSuggestions(value), 300);
+      });
+      document.addEventListener("click", function (e) {
+        if (!document.querySelector(".search").contains(e.target)) {
+          searchResults.style.display = "none";
+        }
+      });
+    }
+    async function fetchSearchSuggestions(keyword) {
+      try {
+        const res = await fetch(`https://api.everrest.educata.dev/shop/products/search?keywords=${keyword}&page_size=5`);
+        const data = await res.json();
+        renderSearchResults(data.products || []);
+      } catch(e) { console.log(e); }
+    }
+    function renderSearchResults(products) {
+      if (!products.length) { searchResults.style.display = "none"; return; }
+      searchResults.innerHTML = "";
+      products.forEach(p => {
+        searchResults.innerHTML += `
+          <div class="search-item" onclick="window.location.href='inside-product.html?id=${p._id}'">
+            <img src="${p.images?.[0] || p.thumbnail || ""}" referrerpolicy="no-referrer">
+            <span>${p.title}</span>
+            <span class="search-item-price">${p.price?.current || 0}$</span>
+          </div>`;
+      });
+      searchResults.style.display = "block";
+    }
+
+    // Burger menu
+    const burgerBtn = document.getElementById("burger-btn");
+    const mobileMenu = document.getElementById("mobile-menu");
+    burgerBtn?.addEventListener("click", () => {
+      mobileMenu.classList.toggle("open");
+      burgerBtn.classList.toggle("active");
+    });
+
+    // Sync mobile cart button
+    const mobilecartBtn = document.getElementById("mobile-cart-btn");
+    mobilecartBtn?.addEventListener("click", () => {
+      document.getElementById("cart-drawer").classList.add("open");
+      document.getElementById("cart-overlay").classList.add("show");
+      mobileMenu.classList.remove("open");
+    });
+
+    // Sync mobile logout
+    document.getElementById("mobile-logout-btn")?.addEventListener("click", () => {
+      document.getElementById("logout-btn")?.click();
+    });
+  </script>
+</body>
+</html>

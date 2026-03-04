@@ -1,55 +1,73 @@
-let images = ["3.avif", "7.avif", "9.avif"];
+let images = ["./images/blue laptop 1.jpg", "./images/samsung 1.jpg", "./images/smartwatch.jpg"];
 let i = 0;
 
 setInterval(() => {
   i++;
   if (i >= images.length) i = 0;
   document.getElementById("slider").src = images[i];
-}, 2000);
+}, 5000);
 
 
-let bestseller = document.getElementById("bestsellers");
+let bestsellers = document.getElementById("bestsellers");
 
 function getAll() {
+  fetch("https://api.everrest.educata.dev/shop/products/all?page_size=38")
+    .then(response => response.json())
+    .then(data => {
+      bestsellers.innerHTML = "";
 
-fetch("https://api.everrest.educata.dev/shop/products/all")
+      const sortedProducts = data.products.sort((a, b) => b.rating - a.rating);
 
-.then(response => response.json())
-
-.then(data => {
-
-  for(let i = 0; i < 6; i++){
-
-    bestseller.innerHTML += card(data.products[i]);
-
-  }
-
-});
-
+      for (let i = 0; i < 6; i++) {
+        bestsellers.innerHTML += card(sortedProducts[i]);
+      }
+    });
 }
 
 getAll();
 
+document.addEventListener("click", (e) => {
+  const btn = e.target.closest(".add-to-cart-btn");
+  if (!btn) return;
+  if (btn.disabled) return; // ✅ block clicks on out-of-stock
+
+  const productId = btn.dataset.productId;
+  if (typeof window.addToCart === "function") {
+    window.addToCart(productId);
+  }
+});
 
 
-function card(product){
+
+function card(product) {
+  const fullStars = Math.round(product.rating);
+  let starsHTML = "";
+  for (let i = 1; i <= 5; i++) {
+    starsHTML += i <= fullStars ? "★" : "☆";
+  }
+
+  const outOfStock = product.stock <= 0;
 
   return `
-  
-<div class="card" style="width: 18rem;">
+    <div class="card" onclick="window.location.href='inside-product.html?id=${product._id}'">
 
-  <img src="${product.images[0]}" class="card-img-top">
+      <div class="card__price">${product.price.current}$</div>
 
-  <div class="card-body">
+      <div class="card__image-wrapper">
+        <img class="card__image" src="${product.images[0]}" referrerpolicy="no-referrer" alt="${product.title}">
+      </div>
 
-    <h5 class="card-title">${product.title}</h5>
+      <div class="card__body">
+        <h3 class="card__title">${product.title}</h3>
+        <div class="card__stars">${starsHTML}</div>
+        <button
+          class="card__btn ${outOfStock ? "card__btn--disabled" : ""}"
+          ${outOfStock ? "disabled" : ""}
+          onclick="event.stopPropagation(); ${outOfStock ? "" : `addToCart('${product._id}')`}">
+          ${outOfStock ? "Out of Stock" : "ADD TO CART"}
+        </button>
+      </div>
 
-    <p class="card-text">${product.price.current} $</p>
-
-  </div>
-
-</div>
-
+    </div>
   `;
 }
-

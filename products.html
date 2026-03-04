@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Products</title>
+    <link rel="stylesheet" href="./main.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body>
+
+  <header>
+    <div class="top-bar">FREE SHIPPING WORLDWIDE</div>
+    <div class="main-header">
+
+      <div class="logo">
+        <a href="./main.html">
+          <p class="p1">Digital<span class="span">Store</span></p>
+        </a>
+      </div>
+
+      <div class="search">
+        <input type="text" id="searchInput" placeholder="Search products..." autocomplete="off"/>
+        <div id="searchResults" class="search-results"></div>
+      </div>
+
+      <div class="actions" id="auth-actions">
+        <div class="action guest-only"><span class="open-signup">Sign up</span></div>
+        <div class="action guest-only"><span class="open-login">Log in</span></div>
+        <div class="action user-only" style="display:none;">
+          <i class="fa-solid fa-user user-icon" id="user-profile-btn"></i>
+        </div>
+        <div class="action user-only" id="cart-btn" style="position:relative;cursor:pointer;">
+          <i class="fa-solid fa-cart-shopping"></i>
+          <span id="cart-count" class="cart-count">0</span>
+        </div>
+        <div class="action user-only" style="display:none;">
+          <span id="logout-btn">Sign out</span>
+        </div>
+      </div>
+
+      <button class="burger-btn" id="burger-btn" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+
+    </div>
+
+    <div class="mobile-menu" id="mobile-menu">
+      <div class="mobile-actions">
+        <div class="mobile-action guest-only"><span class="open-signup">Sign up</span></div>
+        <div class="mobile-action guest-only"><span class="open-login">Log in</span></div>
+        <div class="mobile-action user-only" style="display:none;">
+          <i class="fa-solid fa-user"></i> Profile
+        </div>
+        <div class="mobile-action user-only" id="mobile-cart-btn" style="display:none;cursor:pointer;">
+          <i class="fa-solid fa-cart-shopping"></i> Cart
+          <span id="mobile-cart-count" class="cart-count">0</span>
+        </div>
+        <div class="mobile-action user-only" style="display:none;">
+          <span id="mobile-logout-btn">Sign out</span>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <div class="aside-products-container">
+    <aside class="sidebar">
+      <div class="breadcrumb">
+        <span class="home">Home</span>
+        <span class="separator">></span>
+        <span class="current">Order page</span>
+        <svg class="cart-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="9" cy="21" r="1"></circle>
+          <circle cx="20" cy="21" r="1"></circle>
+          <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+        </svg>
+      </div>
+      <h3>Browse by :</h3>
+      <div class="filter-header" onclick="toggleCategory()"><span>Category</span><span class="plus">+</span></div>
+      <div id="categoryList" style="display:none;"></div>
+      <div class="filter-header" onclick="toggleBrands()"><span>Brand</span><span class="plus">+</span></div>
+      <div id="brandList" style="display:none;"></div>
+      <div class="filter-header" onclick="toggleRating()"><span>Rating</span><span class="plus">+</span></div>
+      <div id="ratingList" style="display:none;"></div>
+      <div class="filter-header" onclick="togglePrice()"><span>Price</span><span class="plus">+</span></div>
+      <div id="priceFilter" style="display:none;">
+        <div class="price-inputs">
+          <input type="number" id="minPrice" placeholder="Min" min="50" max="8000" value="50">
+          <input type="number" id="maxPrice" placeholder="Max" min="50" max="8000" value="8000">
+        </div>
+        <button class="price-btn" onclick="filterByPrice()">Apply Filter</button>
+      </div>
+      <div class="get-all" onclick="getAllProducts()">GET ALL <span class="arrow">↩</span></div>
+    </aside>
+
+    <section class="products-page">
+      <div class="loader-wrapper"><div id="loader" class="loader"></div></div>
+      
+      <div id="allProducts" class="products-grid"></div>
+      <div class="pagination-bar">
+  <select onchange="changeProductsPerPage(this.value)">
+    <option value="6">6</option>
+    <option value="9">9</option>
+    <option value="15">15</option>
+    <option value="38">All</option>
+  </select>
+
+  <div id="pagination" class="pagination"></div>
+
+  <select onchange="changeSort(this.value)">
+    <option value="">Sort by</option>
+    <option value="price_asc">Price ↑</option>
+    <option value="price_desc">Price ↓</option>
+    <option value="rating_asc">Rating ↑</option>
+    <option value="rating_desc">Rating ↓</option>
+  </select>
+</div>
+    </section>
+  </div>
+
+  <footer>
+    <hr>
+    <h3 class="title">We accept the following paying methods</h3>
+    <div class="footer1">
+      <img src="./images/Visa.avif" alt="visacard">
+      <img src="./images/brand-mastercard@3x.avif" alt="mastercard">
+      <img src="./images/brand-amex@3x.avif" alt="brand-amex">
+      <img src="./images/brand-chinaunionpay@3x.avif" alt="brand-chinaunionpay">
+      <img src="./images/brand-jcb@3x.avif" alt="brand-jcb">
+      <img src="./images/Diners.avif" alt="Diners">
+      <img src="./images/Discover.avif" alt="Discover">
+      <img src="./images/PayPal.avif" alt="PayPal">
+    </div>
+  </footer>
+
+  <div id="cart-drawer" class="cart-drawer">
+    <div class="cart-header"><h3>Cart</h3><span id="close-cart">&times;</span></div>
+    <div id="cart-items"></div>
+    <div class="cart-footer">
+      <h4>Total: <span id="cart-total">$0</span></h4>
+      <button id="checkout-btn">Proceed to Checkout</button>
+    </div>
+  </div>
+  <div id="cart-overlay" class="cart-overlay"></div>
+
+  <div id="auth-overlay" class="overlay hidden">
+    <div class="auth-modal">
+      <button id="close-auth" class="close-btn">&times;</button>
+      <h2>Create Account</h2><hr>
+      <form id="signup-form" class="auth-form">
+        <div class="row">
+          <div class="input-group"><i class="fa-solid fa-user"></i><input type="text" id="signup-firstName" placeholder="First Name" required></div>
+          <div class="input-group"><i class="fa-solid fa-user"></i><input type="text" id="signup-lastName" placeholder="Last Name" required></div>
+        </div>
+        <div class="row">
+          <div class="input-group"><i class="fa-solid fa-envelope"></i><input type="email" id="signup-email" placeholder="Email" required></div>
+          <div class="input-group"><i class="fa-solid fa-lock"></i><input type="password" id="signup-password" placeholder="Password" required></div>
+        </div>
+        <div class="row">
+          <div class="input-group"><i class="fa-solid fa-phone"></i><input type="text" id="signup-phone" placeholder="+995 Phone"></div>
+          <div class="input-group"><i class="fa-solid fa-location-dot"></i><input type="text" id="signup-zipCode" placeholder="ZIP Code"></div>
+        </div>
+        <div class="row">
+          <div class="input-group"><i class="fa-solid fa-map"></i><input type="text" id="signup-address" placeholder="Address"></div>
+          <div class="input-group"><i class="fa-solid fa-cake-candles"></i><input type="number" id="signup-age" placeholder="Age"></div>
+        </div>
+        <div class="input-group full"><i class="fa-solid fa-image"></i><input type="text" id="signup-avatar" placeholder="Image URL"></div>
+        <div class="input-group full">
+          <i class="fa-solid fa-venus-mars"></i>
+          <select id="signup-gender"><option value="">Gender</option><option value="MALE">Male</option><option value="FEMALE">Female</option></select>
+        </div>
+        <button type="submit" class="auth-btn">Register</button>
+      </form>
+      <div class="login-wrapper" style="display:none;">
+        <div class="login-left">
+          <h2>Sign In</h2><hr>
+          <form id="signin-form" class="auth-form">
+            <div class="input-group full"><i class="fa-solid fa-envelope"></i><input type="email" id="signin-email" placeholder="Email" required></div>
+            <div class="input-group full"><i class="fa-solid fa-lock"></i><input type="password" id="signin-password" placeholder="Password" required></div>
+            <div class="forgot-password"><span id="forgot-password-btn">Forgot Password?</span></div>
+            <button type="submit" class="auth-btn">Sign In</button>
+          </form>
+        </div>
+        <div class="login-right"><img src="./images/loginlogo.avif" alt="Login IMG"></div>
+      </div>
+    </div>
+  </div>
+
+  <script src="./auth.js"></script>
+  <script src="./cart.js"></script>
+  <script src="./products.js"></script>
+  <script>
+    const burgerBtn = document.getElementById("burger-btn");
+    const mobileMenu = document.getElementById("mobile-menu");
+    burgerBtn?.addEventListener("click", () => {
+      mobileMenu.classList.toggle("open");
+      burgerBtn.classList.toggle("active");
+    });
+    document.getElementById("mobile-cart-btn")?.addEventListener("click", () => {
+      document.getElementById("cart-drawer").classList.add("open");
+      document.getElementById("cart-overlay").classList.add("show");
+      mobileMenu.classList.remove("open");
+    });
+    document.getElementById("mobile-logout-btn")?.addEventListener("click", () => {
+      document.getElementById("logout-btn")?.click();
+    });
+  </script>
+</body>
+</html>
