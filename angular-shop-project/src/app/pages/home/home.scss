@@ -1,0 +1,211 @@
+#slider {
+  max-width: 100vw;
+  width: 100%;
+  max-height: 77vh;
+  object-fit: cover;
+  object-position: center;
+}
+
+section {
+  position: relative;
+}
+
+.mefe {
+  position: absolute;
+  top: 50%;
+  left: 5%;
+  transform: translateY(-50%);
+
+  .text {
+    font-size: 3.5rem;
+    color: whitesmoke;
+  }
+
+  .span1 {
+    display: inline-block;
+    font-size: 1.2rem;
+    color: whitesmoke;
+    background-color: red;
+    border-radius: 8px;
+    padding: 1px 4px;
+    margin-bottom: 8px;
+    animation: glowMove 2.5s ease-in-out infinite;
+  }
+
+  @keyframes glowMove {
+    0%   { transform: translateY(0px);  box-shadow: 0 0 6px rgba(255,0,0,0.4), 0 0 12px rgba(255,0,0,0.2); }
+    50%  { transform: translateY(-4px); box-shadow: 0 0 14px rgba(255,0,0,0.9), 0 0 30px rgba(255,0,0,0.5), 0 0 50px rgba(255,0,0,0.2); }
+    100% { transform: translateY(0px);  box-shadow: 0 0 6px rgba(255,0,0,0.4), 0 0 12px rgba(255,0,0,0.2); }
+  }
+
+  .p1 {
+    font-size: 1rem;
+    color: whitesmoke;
+    padding: 15px 0;
+  }
+
+  .btn1 {
+    color: whitesmoke;
+    font-size: 1.2rem;
+    max-width: 520px;
+    width: 100%;
+    padding: 13px 0;
+    border-radius: 30px;
+    border: 0;
+    background-color: #5b32d6;
+    cursor: pointer;
+    transition: background 0.3s ease, box-shadow 0.3s ease, transform 0.2s ease;
+
+    &:hover {
+      background-color: #4a28b5;
+      box-shadow: 0 0 18px rgba(91, 50, 214, 0.7), 0 0 40px rgba(91, 50, 214, 0.3);
+      transform: translateY(-2px);
+    }
+  }
+}
+
+.section-title {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  margin: 60px 0;
+}
+
+h2 {
+  white-space: nowrap;
+  font-size: 28px;
+  font-weight: 600;
+}
+
+.line {
+  flex: 1;
+  height: 3px;
+  background: black;
+}
+
+.best {
+  display: grid;
+  padding: 30px;
+  grid-template-columns: repeat(3, 1fr);
+  grid-auto-rows: 1fr;
+  gap: 30px;
+  justify-items: stretch;
+  align-items: stretch;
+  background-color: rgb(209, 206, 206);
+}
+
+.animations {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  background-color: rgba(128, 128, 128, 0.16);
+  padding: 20px;
+  margin-top: 30px;
+  font-family: 'Roboto Flex', sans-serif;
+
+  .moto {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+
+    .box:hover {
+      transform: translateY(-20px);
+      transition: 0.8s;
+    }
+
+    .clock:hover {
+      transform: rotate(360deg);
+      transition: 0.8s;
+    }
+
+    .mopedi, p {
+      transition: all 0.8s ease;
+    }
+
+    &:hover {
+      .mopedi {
+        transform: translateX(210px) rotate(20deg);
+        p { color: #5b32d6; }
+      }
+      p {
+        font-family: "roboto flex";
+        font-weight: 700;
+        font-size: 1.5rem;
+      }
+    }
+  }
+}
+
+@media (max-width: 1024px) {
+  .mefe {
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    .text { font-size: 2.5rem; }
+  }
+
+  .best {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .animations {
+    flex-wrap: wrap;
+    gap: 30px;
+  }
+}
+
+@media (max-width: 768px) {
+  #slider { max-height: 60vh; }
+
+  .mefe {
+    .text { font-size: 1.8rem; }
+    .p1 { font-size: 0.9rem; }
+    .btn1 { font-size: 1rem; padding: 10px 0; }
+  }
+
+  .best {
+    grid-template-columns: 1fr;
+    gap: 20px;
+    padding: 20px;
+  }
+
+  .section-title {
+    margin: 40px 0;
+    h2 { font-size: 22px; }
+  }
+
+  .animations {
+    flex-direction: column;
+    gap: 40px;
+    text-align: center;
+  }
+}
+
+@media (max-width: 709px) {
+  #slider { max-height: 45vh; }
+
+  .mefe {
+    top: 35%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    width: 90%;
+
+    .text { font-size: 1.2rem; }
+    .span1 { font-size: 0.75rem; }
+    .p1 { font-size: 0.75rem; padding: 8px 0; }
+    .btn1 { width: auto; padding: 8px 30px; font-size: 0.85rem; }
+  }
+}
+
+@media (max-width: 550px) {
+  .mefe {
+    top: 35%;
+    .text { font-size: 0.7rem; }
+    .span1 { font-size: 0.7rem; }
+    .p1 { display: none; }
+    .btn1 { width: auto; padding: 6px 24px; font-size: 0.75rem; }
+  }
+}

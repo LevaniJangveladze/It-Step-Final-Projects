@@ -1,0 +1,29 @@
+<header>
+  <div class="top-bar">FREE SHIPPING WORLDWIDE</div>
+
+  <div class="main-header">
+<div class="logo">
+  <a routerLink="/">
+    <p class="p1">Digital<span class="span">Store</span></p>
+  </a>
+</div>
+
+    <div class="search">
+     <input type="text" name="" id="">
+    </div>
+
+    <div class="actions">
+    @if (!isLoggedIn) {
+        <p>Sign up</p>
+        <p>Log in</p>
+    }
+    @if (isLoggedIn) {
+        <i class="fa-solid fa-user"></i>
+        <i class="fa-solid fa-cart-shopping"></i>
+        <span>{{cartCount}}</span> 
+        <p (click)="logout()">Log out</p>
+    }
+    </div>
+  </div>
+
+</header>

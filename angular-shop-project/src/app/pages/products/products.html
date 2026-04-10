@@ -1,0 +1,25 @@
+<div class="filter-header" (click)="toggleCategory()">
+  <span>Category</span>
+  <span class="plus">+</span>
+</div>
+
+@if(showCategories) {
+     @for (category of categories; track $index) {
+      <div class="category-item" (click)="filterByCategory(category.id)" >
+         {{category.name}}
+      </div>
+    }
+}
+
+<div class="brand-header" (click)="toggleBrand()">
+   <span>Brand</span>
+   <span class="plus">+</span>
+</div>
+
+@if(showBrands){
+    @for (brand of brands; track $index) {
+        <div class="brand-item" (click)="filterByBrand(brand)">
+            {{brand}}
+        </div>
+    }
+}

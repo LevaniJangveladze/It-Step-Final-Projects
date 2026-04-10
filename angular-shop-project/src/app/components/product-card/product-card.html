@@ -1,0 +1,17 @@
+<div (click)="goToProduct(product._id)" class="card">
+  <div class="card__price">{{product.price.current}}$</div>
+  <div class="card__image-wrapper">
+    <img class="card__image" [src]="product.images[0]" [alt]="product.title" referrerpolicy="no-referrer">
+  </div>
+  <div class="card__body">
+    <h3 class="card__title">{{product.title}}</h3>
+    <div class="card__stars">{{getStars(product.rating)}}</div>
+    <button
+      class="card__btn"
+      [class.card__btn--disabled]="product.stock === 0"
+      [disabled]="product.stock <= 0"
+      (click)="$event.stopPropagation(); onAddToCart()">
+      {{product.stock <= 0 ? 'Out of Stock' : 'ADD TO CART'}}
+    </button>
+  </div>
+</div>
