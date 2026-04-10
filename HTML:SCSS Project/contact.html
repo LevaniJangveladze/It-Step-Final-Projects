@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./SCSS/main.css">
+</head>
+<body class="contact-page">
+     <header class="header">
+  <div class="header__container">
+
+   
+    <div class="header__logo">
+      <img src="./images/Arcade logo.jpeg" alt="Arcade Logo">
+      <span class="header__logo-text">Arcade</span>
+    </div>
+
+   
+    <div class="header__right">
+
+      
+      <button class="header__burger" aria-label="Open menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+
+      
+      <nav class="header__nav">
+        <ul>
+          <li><a href="products.html" class="active">Products</a></li>
+          <li><a href="onsale.html">On Sale</a></li>
+          <li><a href="contact.html">Contact Us</a></li>
+          <li class="login-link">
+            <a href="#">
+              <img src="./images/log in headedr oic.png" alt="login">
+              Log In
+            </a>
+          </li>
+        </ul>
+      </nav>
+
+      
+      <div class="header__icons">
+        <button class="icon-btn">
+          <img src="./images/shopping-cart.png" alt="Cart">
+        </button>
+      </div>
+
+    </div>
+  </div>
+</header>
+
+<main>
+    <section class="contact">
+        <div class="contact-info">
+
+         <div class="hand">
+          <h1>NEED A HAND?</h1>
+          <p>Contact Us</p>
+         </div>
+
+         <div class="contact-information">
+            <p>info@mysite.com</p>
+            <p>123-456-7890</p>
+            <p>500 Terry Francine Street <br>
+             San Francisco, CA 94158</p>
+             </div>
+
+           <div class="contact-map">
+             <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d190570.63418894136!2d44.80676375!3d41.72772215!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x40440cd7e64f626b%3A0x61d084ede2576ea3!2sTbilisi!5e0!3m2!1sen!2sge!4v1766755641604!5m2!1sen!2sge" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+           </div>
+         
+        </div>
+
+
+        <div class="contact-form">
+          <form>
+
+            <div class="form__row">
+
+                <div class="form__field">
+                    <label for="first-name">First name *</label>
+                    <input type="text" id="first-name" name="firstName" required>
+                </div>
+
+                <div class="form__field">
+                    <label for="last-name">Last name *</label>
+                    <input type="text" id="last-name" name="lastName" required>
+                </div>
+
+
+            </div>
+
+            <div class="form__row">
+                <div class="form__field">
+                    <label for="email">Email *</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+
+                <div class="form__field">
+                    <label for="phone">Phone</label>
+                    <input type="tel" id="phone" name="phone">
+                </div>
+            </div>
+
+             <div class="text-field">
+                    <label for="message">Leave us a message</label>
+                    <textarea id="message" rows="4" name="message"></textarea>
+            </div>
+
+            <button type="submit" class="btn btn-primary">Submit</button>
+          </form>
+        </div>
+    </section>
+
+    <section class="faq">
+       <div class="faq-container">
+
+        <h3>Frequently Asked Question</h3>
+
+        <div class="questions-search">
+            <p>Frequently asked questions</p>
+
+            <div class="search-field">
+              <input type="search" placeholder="Looking for something"/>
+              <span class="search-icon">🔍</span>
+            </div>
+        </div>
+
+        <div class="faq-tabs">
+            <button class="tab active" data-tab="general">General</button>
+            <button class="tab active" data-tab="setup">Setting up FAQs</button>
+        </div>
+
+        <div class="faq-content">
+
+            <div class="tab-content active" id="general">
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>What is an FAQ section?</span>
+                        <span class="arrow">⌄</span>
+                    </div>
+
+                    <div class="faq-answer">
+                        An FAQ section can be used to quickly answer common questions about your business like
+                        "Where do you ship to?", "What are your opening hours?", or "How can I book a service?".
+
+                       <div class="faq-icons">
+                         <img src="./images/facebook-svgrepo-com.svg" alt="fb">
+                        <img src="./images/icons8-x-50.png" alt="x">
+                        <img src="./images/icons8-linkedin-50.png" alt="linkedin">
+                        <img src="./images/icons8-link-48.png" alt="link">
+                       </div>
+
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>Why do FAQs matter?</span>
+                        <span class="arrow">⌄</span>
+                    </div>
+
+                    <div class="faq-answer">
+                        FAQs are a great way to help site visitors find quick answers to common questions about your business and create a better <br>
+                         navigation experience.
+
+                          <div class="faq-icons">
+                         <img src="./images/facebook-svgrepo-com.svg" alt="fb">
+                        <img src="./images/icons8-x-50.png" alt="x">
+                        <img src="./images/icons8-linkedin-50.png" alt="linkedin">
+                        <img src="./images/icons8-link-48.png" alt="link">
+                       </div>
+
+                        </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>Where can I add my FAQs?</span>
+                        <span class="arrow">⌄</span>
+                    </div>
+
+                    <div class="faq-answer">
+                        FAQs can be added to any page on your site or to your Wix mobile app, giving access to members on the go.
+
+                         <div class="faq-icons">
+                         <img src="./images/facebook-svgrepo-com.svg" alt="fb">
+                         <img src="./images/icons8-x-50.png" alt="x">
+                         <img src="./images/icons8-linkedin-50.png" alt="linkedin">
+                         <img src="./images/icons8-link-48.png" alt="link">
+                       </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="tab-content" id="setup">
+
+              <div class="faq-item">
+
+                <div class="faq-question">
+                  <span>How do I add a new question & answer?</span>
+                  <span class="arrow">⌄</span>
+                  </div>
+
+                  <div class="faq-answer">
+                    To add a new FAQ follow these steps: 
+
+                    1. Manage FAQs from your site dashboard or in the Editor 
+
+                    2. Add a new question & answer 
+
+                    3. Assign your FAQ to a category 
+
+                    4. Save and publish.
+
+
+                  You can always come back and edit your FAQs.
+
+                      <div class="faq-icons">
+                         <img src="./images/facebook-svgrepo-com.svg" alt="fb">
+                         <img src="./images/icons8-x-50.png" alt="x">
+                         <img src="./images/icons8-linkedin-50.png" alt="linkedin">
+                         <img src="./images/icons8-link-48.png" alt="link">
+                       </div>
+
+                  </div>
+                
+              </div>
+
+              <div class="faq-item">
+
+                <div class="faq-question">
+                  <span>Can I insert an image, video, or GIF in my FAQ?</span>
+                  <span class="arrow">⌄</span>
+                  </div>
+                  <div class="faq-answer">
+                    Yes. To add media follow these steps: 
+
+                    1. Manage FAQs from your site dashboard or in the Editor 
+
+                    2. Create a new FAQ or edit an existing one 
+
+                    3. From the answer text box click on the video, image or GIF icon 
+
+                    4. Add media from your library and save.
+
+                      <div class="faq-icons">
+                         <img src="./images/facebook-svgrepo-com.svg" alt="fb">
+                         <img src="./images/icons8-x-50.png" alt="x">
+                         <img src="./images/icons8-linkedin-50.png" alt="linkedin">
+                         <img src="./images/icons8-link-48.png" alt="link">
+                       </div>
+
+                  </div>
+                
+              </div>
+
+              <div class="faq-item">
+
+                <div class="faq-question">
+                  <span>How do I edit or remove the 'Frequently Asked Questions' title?</span>
+                  <span class="arrow">⌄</span>
+                  </div>
+
+                  <div class="faq-answer">
+                    
+                   You can edit the title from the FAQ 'Settings' tab in the Editor.  
+                   To remove the title from your mobile app go to the 'Site & App' tab in your Owner's app and customize.
+
+                      <div class="faq-icons">
+                         <img src="./images/facebook-svgrepo-com.svg" alt="fb">
+                         <img src="./images/icons8-x-50.png" alt="x">
+                         <img src="./images/icons8-linkedin-50.png" alt="linkedin">
+                         <img src="./images/icons8-link-48.png" alt="link">
+                       </div>
+
+                  </div>
+                
+              </div>
+
+
+
+
+            </div>
+
+            
+        </div>
+
+        </div>
+    </section>
+</main>
+
+ <footer class="footer">
+  <div class="upper">
+
+       <div class="img-arcade">
+        <img src="./images/Arcade logo.jpeg" alt="arclogo">
+        <h2>Arcade</h2>
+     </div>
+     
+     <div class="products">
+        <nav>
+            <ul>
+                <li><a href="./products.html" class="prod">Products</a></li>
+                <li><a href="#">Games</a></li>
+                <li><a href="#">Consoles</a></li>
+                <li><a href="#">Controllers</a></li>
+                <li><a href="#">Accessories</a></li>
+            </ul>
+        </nav>
+     </div>
+
+     <div class="store">
+        <p class="storebold">Store</p>
+        <p>500 Terry Francine Street <br>
+        San francisco, CA 94158</p>
+        <p>Mon - Fri:9am - 9pm</p>
+        <p>info@mysite.com</p>
+        <p>123-456-7890</p>
+     </div>
+
+     <div class="policy">
+        <p class="policybold">Policy</p>
+        <p>Terms & Conditions</p>
+        <p>Shipping Policy</p>
+        <p>Refund Policy</p>
+        <p>Privacy Policy</p>
+        <p>Cookie Policy</p>
+        <p>FAQ</p>
+     </div>
+  </div>
+
+     <div class="belowfooter">
+
+       <div class="left">
+         <p>Payment Methods</p>
+        <div class="paymentcards">
+            <img src="./images/VISA.avif" alt="visa">
+            <img src="./images/Master Card.png" alt="master">
+            <img src="./images/American Express.png" alt="american">
+            <img src="./images/JCB.png" alt="jcb">
+            <img src="./images/Discover.png" alt="discover">
+            <img src="./images/China Union Pay.png" alt="china">
+            <img src="./images/Diners.png" alt="diners">
+            <img src="./images/PayPal.png" alt="paypal">
+        </div>
+       </div>
+
+       <div class="right">
+        <p>Join The Community</p>
+        <div class="social">
+            <img src="./images/fb logo.png" alt="fb">
+            <img src="./images/insta logo.png" alt="insta">
+            <img src="./images/3 logo.png" alt="youtube">
+            <img src="./images/tiktok logo.png" alt="tiktok">
+        </div>
+       </div>
+     </div>
+   </footer>
+
+<script>
+  document.querySelectorAll('.faq-question').forEach(question => {
+    question.addEventListener('click', () => {
+      const item = question.parentElement;
+      item.classList.toggle('active');
+    });
+  });
+</script>
+
+
+<script>
+  const tabs = document.querySelectorAll('.tab');
+  const contents = document.querySelectorAll('.tab-content');
+
+  tabs.forEach(tab => {
+    tab.addEventListener('click', () => {
+      tabs.forEach(t => t.classList.remove('active'));
+      contents.forEach(c => c.classList.remove('active'));
+
+      tab.classList.add('active');
+      document.getElementById(tab.dataset.tab).classList.add('active');
+    });
+  });
+</script>
+
+</body>
+</html>
