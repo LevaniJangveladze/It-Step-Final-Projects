@@ -31,7 +31,7 @@ async function init() {
   displayRating();
 }
 
-// ================= FETCH PRODUCTS =================
+
 
 async function fetchProductsWithSearch() {
   loaderWrapper.style.display = "flex";
@@ -60,7 +60,7 @@ async function fetchProductsWithSearch() {
   }
 }
 
-// ================= PAGINATION =================
+
 
 function buildPagination() {
   paginationContainer.innerHTML = "";
@@ -82,7 +82,7 @@ function changePage(page) {
   fetchProductsWithSearch();
 }
 
-// ================= DISPLAY PRODUCTS =================
+
 
 function displayProducts(productsArray) {
   allProductsContainer.innerHTML = "";
@@ -97,7 +97,7 @@ function displayProducts(productsArray) {
   });
 }
 
-// ================= CREATE CARD =================
+
 
 function createCard(product) {
   const rating = Math.round(product.rating || 0);
@@ -107,7 +107,6 @@ function createCard(product) {
     starsHTML += i <= rating ? "★" : "☆";
   }
 
-  // ✅ FIX: use <= 0 to catch negative stock values like -5
   const outOfStock = product.stock <= 0;
 
   return `
@@ -141,7 +140,7 @@ function createCard(product) {
   `;
 }
 
-// ================= FILTERS =================
+
 
 function filterByBrand(brand) {
   searchParams.brand = brand;
@@ -162,8 +161,9 @@ function filterByRating(rating) {
 }
 
 function filterByPrice() {
-  searchParams.price_min = minPriceInput.value;
-  searchParams.price_max = maxPriceInput.value;
+ 
+  searchParams.price_min = minPriceInput.value ? Number(minPriceInput.value) : "";
+  searchParams.price_max = maxPriceInput.value ? Number(maxPriceInput.value) : "";
   searchParams.page_index = 1;
   fetchProductsWithSearch();
 }
@@ -181,6 +181,8 @@ function clearAllFilters() {
     sort_by: "",
     sort_direction: ""
   };
+  minPriceInput.value = 50;   
+  maxPriceInput.value = 8000;
   fetchProductsWithSearch();
 }
 
@@ -188,7 +190,7 @@ function getAllProducts() {
   clearAllFilters();
 }
 
-// ================= LOAD BRANDS =================
+
 
 async function loadBrands() {
   const res = await fetch("https://api.everrest.educata.dev/shop/products/brands");
@@ -204,7 +206,7 @@ async function loadBrands() {
   });
 }
 
-// ================= LOAD CATEGORIES =================
+
 
 async function loadCategories() {
   const res = await fetch("https://api.everrest.educata.dev/shop/products/categories");
@@ -220,7 +222,7 @@ async function loadCategories() {
   });
 }
 
-// ================= RATING UI =================
+
 
 function displayRating() {
   ratingList.innerHTML = "";
@@ -238,19 +240,20 @@ function displayRating() {
   }
 }
 
-// ================= NAVIGATION =================
+
 
 function goToProduct(id) {
   window.location.href = `inside-product.html?id=${id}`;
 }
 
 function changeProductsPerPage(value) {
-  searchParams.page_size = value === "38" ? totalProducts : Number(value);
+  
+  searchParams.page_size = value === "all" ? 200 : Number(value);
   searchParams.page_index = 1;
   fetchProductsWithSearch();
 }
 
-// ================= TOGGLES =================
+
 
 function toggleCategory() {
   const el = document.getElementById("categoryList");
@@ -272,7 +275,7 @@ function togglePrice() {
   el.style.display = el.style.display === "none" ? "block" : "none";
 }
 
-// ================= SMART SEARCH =================
+
 
 const searchInput = document.getElementById("searchInput");
 const searchResults = document.getElementById("searchResults");
@@ -332,6 +335,8 @@ document.addEventListener("click", function (e) {
     searchResults.style.display = "none";
   }
 });
+
+
 
 function changeSort(value) {
   if (!value) {

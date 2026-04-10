@@ -11,7 +11,7 @@
   }
 }
 
-// ================= GALLERY =================
+
 
 .product-gallery {
   position: relative;
@@ -64,7 +64,7 @@
   font-size: 20px;
 }
 
-// ================= PRODUCT INFO =================
+
 
 .product-info {
   flex: 1;
@@ -154,7 +154,7 @@
     span { font-size: 18px; }
   }
 
-  // ✅ In-stock button
+
   .add-to-cart {
     width: 100%;
     padding: 14px;
@@ -175,7 +175,7 @@
 
     &:active { transform: scale(0.98); }
 
-    // ✅ Out of stock state
+
     &.disabled {
       background: #ddd;
       color: #aaa;
@@ -189,7 +189,7 @@
   }
 }
 
-// ================= FOOTER =================
+
 
 .title {
   text-align: center;

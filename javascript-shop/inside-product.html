@@ -39,14 +39,14 @@
         </div>
       </div>
 
-      <!-- BURGER -->
+      
       <button class="burger-btn" id="burger-btn" aria-label="Menu">
         <span></span><span></span><span></span>
       </button>
 
     </div>
 
-    <!-- MOBILE MENU -->
+   
     <div class="mobile-menu" id="mobile-menu">
       <div class="mobile-actions" id="mobile-auth-actions">
         <div class="mobile-action guest-only"><span class="open-signup">Sign up</span></div>
@@ -143,11 +143,53 @@
     </div>
   </div>
 
+  
+<div id="logos-btn" class="logos-btn">
+  <span class="logos-btn__pulse"></span>
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+    <path d="M12 2a10 10 0 0 1 10 10c0 5.52-4.48 10-10 10S2 17.52 2 12 6.48 2 12 2z"/>
+    <path d="M8 12h.01M12 12h.01M16 12h.01"/>
+  </svg>
+</div>
+
+<div id="logos-drawer" class="logos-drawer">
+  <div class="logos-header">
+    <div class="logos-header__info">
+      <div class="logos-header__avatar">Λ</div>
+      <div>
+        <h4>Logos</h4>
+        <span>AI Shopping Assistant</span>
+      </div>
+    </div>
+    <button id="logos-close" class="logos-close">&times;</button>
+  </div>
+
+  <div id="logos-messages" class="logos-messages">
+    <div class="logos-message logos-message--ai">
+      <div class="logos-message__bubble">
+        Hello! I'm <strong>Logos</strong> — your personal shopping assistant. Ask me anything about our products, I'll help you find exactly what you need. 🏛️
+      </div>
+    </div>
+  </div>
+
+  <div class="logos-input-area">
+    <input type="text" id="logos-input" placeholder="Ask Logos anything..." autocomplete="off"/>
+    <button id="logos-send" class="logos-send">
+      <svg viewBox="0 0 24 24" fill="currentColor">
+        <path d="M2 21l21-9L2 3v7l15 2-15 2v7z"/>
+      </svg>
+    </button>
+  </div>
+</div>
+
+<div id="logos-overlay" class="logos-overlay"></div>
+
   <script src="./auth.js"></script>
   <script src="./cart.js"></script>
   <script src="./inside-product.js"></script>
+  <script src="./logos.js" ></script>
   <script>
-    // Search for inside-product page
+    
     const searchInput = document.getElementById("searchInput");
     const searchResults = document.getElementById("searchResults");
     if (searchInput && searchResults) {
@@ -185,23 +227,39 @@
       searchResults.style.display = "block";
     }
 
-    // Burger menu
-    const burgerBtn = document.getElementById("burger-btn");
-    const mobileMenu = document.getElementById("mobile-menu");
-    burgerBtn?.addEventListener("click", () => {
-      mobileMenu.classList.toggle("open");
-      burgerBtn.classList.toggle("active");
-    });
+    
+const burgerBtn = document.getElementById("burger-btn");
+const mobileMenu = document.getElementById("mobile-menu");
+burgerBtn?.addEventListener("click", () => {
+  mobileMenu.classList.toggle("open");
+  burgerBtn.classList.toggle("active");
+});
+document.getElementById("mobile-cart-btn")?.addEventListener("click", () => {
+  document.getElementById("cart-drawer").classList.add("open");
+  document.getElementById("cart-overlay").classList.add("show");
+  mobileMenu.classList.remove("open");
+  burgerBtn.classList.remove("active");
+});
+document.getElementById("mobile-logout-btn")?.addEventListener("click", () => {
+  document.getElementById("logout-btn")?.click();
+});
 
-    // Sync mobile cart button
+document.querySelector(".mobile-menu .user-only")?.addEventListener("click", () => {
+  document.getElementById("user-profile-btn")?.click();
+  mobileMenu.classList.remove("open");
+  burgerBtn.classList.remove("active");
+});
+
+  
     const mobilecartBtn = document.getElementById("mobile-cart-btn");
     mobilecartBtn?.addEventListener("click", () => {
       document.getElementById("cart-drawer").classList.add("open");
       document.getElementById("cart-overlay").classList.add("show");
       mobileMenu.classList.remove("open");
+      burgerBtn.classList.remove("active");
     });
 
-    // Sync mobile logout
+   
     document.getElementById("mobile-logout-btn")?.addEventListener("click", () => {
       document.getElementById("logout-btn")?.click();
     });

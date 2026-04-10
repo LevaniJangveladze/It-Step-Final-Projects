@@ -98,22 +98,30 @@
       
       <div id="allProducts" class="products-grid"></div>
       <div class="pagination-bar">
-  <select onchange="changeProductsPerPage(this.value)">
-    <option value="6">6</option>
-    <option value="9">9</option>
-    <option value="15">15</option>
-    <option value="38">All</option>
-  </select>
+
+  <div class="custom-select" id="per-page-select">
+    <button class="custom-select__btn" type="button">6</button>
+    <ul class="custom-select__list">
+      <li class="custom-select__item active" data-value="6">6</li>
+      <li class="custom-select__item" data-value="9">9</li>
+      <li class="custom-select__item" data-value="15">15</li>
+      <li class="custom-select__item" data-value="38">All</li>
+    </ul>
+  </div>
 
   <div id="pagination" class="pagination"></div>
 
-  <select onchange="changeSort(this.value)">
-    <option value="">Sort by</option>
-    <option value="price_asc">Price ↑</option>
-    <option value="price_desc">Price ↓</option>
-    <option value="rating_asc">Rating ↑</option>
-    <option value="rating_desc">Rating ↓</option>
-  </select>
+  <div class="custom-select" id="sort-select">
+    <button class="custom-select__btn" type="button">Sort by</button>
+    <ul class="custom-select__list">
+      <li class="custom-select__item active" data-value="">Sort by</li>
+      <li class="custom-select__item" data-value="price_asc">Price ↑</li>
+      <li class="custom-select__item" data-value="price_desc">Price ↓</li>
+      <li class="custom-select__item" data-value="rating_asc">Rating ↑</li>
+      <li class="custom-select__item" data-value="rating_desc">Rating ↓</li>
+    </ul>
+  </div>
+
 </div>
     </section>
   </div>
@@ -186,24 +194,108 @@
     </div>
   </div>
 
+  <!-- LOGOS AI ASSISTANT -->
+<div id="logos-btn" class="logos-btn">
+  <span class="logos-btn__pulse"></span>
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+    <path d="M12 2a10 10 0 0 1 10 10c0 5.52-4.48 10-10 10S2 17.52 2 12 6.48 2 12 2z"/>
+    <path d="M8 12h.01M12 12h.01M16 12h.01"/>
+  </svg>
+</div>
+
+<div id="logos-drawer" class="logos-drawer">
+  <div class="logos-header">
+    <div class="logos-header__info">
+      <div class="logos-header__avatar">Λ</div>
+      <div>
+        <h4>Logos</h4>
+        <span>AI Shopping Assistant</span>
+      </div>
+    </div>
+    <button id="logos-close" class="logos-close">&times;</button>
+  </div>
+
+  <div id="logos-messages" class="logos-messages">
+    <div class="logos-message logos-message--ai">
+      <div class="logos-message__bubble">
+        Hello! I'm <strong>Logos</strong> — your personal shopping assistant. Ask me anything about our products, I'll help you find exactly what you need. 🏛️
+      </div>
+    </div>
+  </div>
+
+  <div class="logos-input-area">
+    <input type="text" id="logos-input" placeholder="Ask Logos anything..." autocomplete="off"/>
+    <button id="logos-send" class="logos-send">
+      <svg viewBox="0 0 24 24" fill="currentColor">
+        <path d="M2 21l21-9L2 3v7l15 2-15 2v7z"/>
+      </svg>
+    </button>
+  </div>
+</div>
+
+<div id="logos-overlay" class="logos-overlay"></div>
+
   <script src="./auth.js"></script>
   <script src="./cart.js"></script>
   <script src="./products.js"></script>
+  <script src="./logos.js" ></script>
   <script>
-    const burgerBtn = document.getElementById("burger-btn");
-    const mobileMenu = document.getElementById("mobile-menu");
-    burgerBtn?.addEventListener("click", () => {
-      mobileMenu.classList.toggle("open");
-      burgerBtn.classList.toggle("active");
+   // Burger menu
+const burgerBtn = document.getElementById("burger-btn");
+const mobileMenu = document.getElementById("mobile-menu");
+burgerBtn?.addEventListener("click", () => {
+  mobileMenu.classList.toggle("open");
+  burgerBtn.classList.toggle("active");
+});
+document.getElementById("mobile-cart-btn")?.addEventListener("click", () => {
+  document.getElementById("cart-drawer").classList.add("open");
+  document.getElementById("cart-overlay").classList.add("show");
+  mobileMenu.classList.remove("open");
+  burgerBtn.classList.remove("active");
+});
+document.getElementById("mobile-logout-btn")?.addEventListener("click", () => {
+  document.getElementById("logout-btn")?.click();
+});
+
+document.querySelector(".mobile-menu .user-only")?.addEventListener("click", () => {
+  document.getElementById("user-profile-btn")?.click();
+  mobileMenu.classList.remove("open");
+  burgerBtn.classList.remove("active");
+});
+
+
+document.querySelectorAll(".custom-select").forEach(select => {
+  const btn = select.querySelector(".custom-select__btn");
+  const items = select.querySelectorAll(".custom-select__item");
+
+  btn.addEventListener("click", (e) => {
+    e.stopPropagation();
+    
+    document.querySelectorAll(".custom-select.open").forEach(s => {
+      if (s !== select) s.classList.remove("open");
     });
-    document.getElementById("mobile-cart-btn")?.addEventListener("click", () => {
-      document.getElementById("cart-drawer").classList.add("open");
-      document.getElementById("cart-overlay").classList.add("show");
-      mobileMenu.classList.remove("open");
+    select.classList.toggle("open");
+  });
+
+  items.forEach(item => {
+    item.addEventListener("click", () => {
+      items.forEach(i => i.classList.remove("active"));
+      item.classList.add("active");
+      btn.childNodes[0].textContent = item.textContent;
+      select.classList.remove("open");
+
+      const value = item.dataset.value;
+      if (select.id === "per-page-select") changeProductsPerPage(value);
+      if (select.id === "sort-select") changeSort(value);
     });
-    document.getElementById("mobile-logout-btn")?.addEventListener("click", () => {
-      document.getElementById("logout-btn")?.click();
-    });
+  });
+});
+
+
+document.addEventListener("click", () => {
+  document.querySelectorAll(".custom-select.open")
+    .forEach(s => s.classList.remove("open"));
+});
   </script>
 </body>
 </html>

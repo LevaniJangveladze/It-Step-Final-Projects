@@ -30,18 +30,31 @@ fetchProduct();
 function renderProduct(product) {
   const outOfStock = product.stock <= 0;
 
+  
+  const hasDiscount = product.price.beforeDiscount > product.price.current;
+  const discountPercent = hasDiscount
+    ? Math.round(100 - (product.price.current / product.price.beforeDiscount) * 100)
+    : 0;
+
+  
+  const mainImageSrc = product.images?.[0] || product.thumbnail || "";
+
+ 
+  const categoryName = product.category?.name || "N/A";
+
+  
+  const showArrows = product.images?.length > 1;
+
   container.innerHTML = `
     <div class="product-wrapper">
 
       <div class="product-gallery">
-        <button class="prev">←</button>
-        <img id="mainImage" src="${product.images[0]}" referrerpolicy="no-referrer" />
-        <button class="next">→</button>
+        ${showArrows ? `<button class="prev">←</button>` : ""}
+        <img id="mainImage" src="${mainImageSrc}" referrerpolicy="no-referrer" />
+        ${showArrows ? `<button class="next">→</button>` : ""}
 
-        ${product.price.beforeDiscount ? `
-          <div class="discount-badge">
-            ${Math.round(100 - (product.price.current / product.price.beforeDiscount) * 100)}%
-          </div>
+        ${hasDiscount ? `
+          <div class="discount-badge">-${discountPercent}%</div>
         ` : ""}
       </div>
 
@@ -50,7 +63,7 @@ function renderProduct(product) {
 
         <div class="price">
           <span class="current">${product.price.current}$</span>
-          ${product.price.beforeDiscount
+          ${hasDiscount
             ? `<span class="old-price">${product.price.beforeDiscount}$</span>`
             : ""}
         </div>
@@ -75,11 +88,10 @@ function renderProduct(product) {
         </div>
 
         <ul>
-          <li>Category: ${product.category.name}</li>
+          <li>Category: ${categoryName}</li>
           <li>Brand: ${product.brand}</li>
         </ul>
 
-        <!-- ✅ FIX: added onclick and disabled state for out-of-stock -->
         <button
           class="add-to-cart ${outOfStock ? "disabled" : ""}"
           ${outOfStock ? "disabled" : ""}
@@ -91,7 +103,9 @@ function renderProduct(product) {
     </div>
   `;
 
-  initCarousel(product.images);
+  if (showArrows) {
+    initCarousel(product.images);
+  }
 }
 
 function generateStars(rating) {

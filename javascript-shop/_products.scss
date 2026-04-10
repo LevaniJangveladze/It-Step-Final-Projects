@@ -4,12 +4,12 @@
   align-items: flex-start;
   padding: 30px 20px;
 
-  @media (max-width: 768px) {
+  @media (max-width: 853px) {
     flex-direction: column;
   }
 }
 
-// ================= SIDEBAR =================
+
 
 .sidebar {
   max-width: 250px;
@@ -17,7 +17,7 @@
   padding-left: 20px;
   flex-shrink: 0;
 
-  @media (max-width: 768px) {
+  @media (max-width: 853px) {
     max-width: 100%;
     padding-left: 0;
   }
@@ -36,6 +36,9 @@
   }
 
   h3 { font-size: 18px; font-weight: 600; margin-bottom: 10px; }
+
+
+  select { margin-bottom: 20px; }
 
   .filter-header {
     display: flex;
@@ -100,7 +103,7 @@
   }
 }
 
-// ================= CATEGORY / BRAND / RATING =================
+
 
 .category-item {
   display: flex;
@@ -144,7 +147,7 @@
   text-shadow: 0 0 4px rgba(255, 215, 0, 0.7), 0 0 6px rgba(255, 215, 0, 0.5);
 }
 
-// ================= PRODUCTS GRID =================
+
 
 .products-page { flex: 1; min-width: 0; }
 
@@ -157,7 +160,7 @@
   @media (max-width: 600px) { grid-template-columns: 1fr; }
 }
 
-// ================= CARD =================
+
 
 .card {
   border-radius: 15px;
@@ -175,8 +178,6 @@
     box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
     cursor: pointer;
   }
-
-  // ✅ Ribbon removed — no &__stock styles
 
   &__price {
     position: absolute;
@@ -237,7 +238,6 @@
     letter-spacing: 2px;
   }
 
-  // ✅ Normal in-stock button
   &__btn {
     width: 100%;
     padding: 13px;
@@ -259,7 +259,6 @@
 
     &:active { transform: scale(0.98); }
 
-    // ✅ Out of stock — pale and disabled
     &--disabled {
       background: #ddd;
       color: #aaa;
@@ -273,7 +272,7 @@
   }
 }
 
-// ================= LOADER =================
+
 
 .loader-wrapper {
   position: fixed;
@@ -314,7 +313,7 @@
 
 @keyframes l16 { 100% { transform: rotate(360deg); } }
 
-// ================= PAGINATION =================
+
 
 .pagination {
   display: flex;
@@ -337,7 +336,7 @@
   }
 }
 
-// ================= SEARCH =================
+
 
 .search-results {
   position: absolute;
@@ -373,8 +372,9 @@
 
 .search-item-price { margin-left: auto; font-weight: bold; }
 
+
 select {
-  margin-bottom: 20px;
+  margin-bottom: 0;
   padding: 8px 14px;
   border: 1.5px solid #eee;
   border-radius: 8px;
@@ -386,6 +386,8 @@ select {
   &:focus { border-color: #6c63ff; }
 }
 
+
+
 .pagination-bar {
   display: flex;
   align-items: center;
@@ -393,4 +395,99 @@ select {
   margin-top: 30px;
   flex-wrap: wrap;
   gap: 12px;
+
+  @media (max-width: 573px) {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 16px;
+
+    select {
+      width: 100%;
+      padding: 12px 16px;
+      font-size: 15px;
+      border-radius: 10px;
+      border-color: #ddd;
+    }
+
+    .pagination {
+      margin-top: 0;
+      justify-content: center;
+      gap: 6px;
+
+      button {
+        padding: 8px 12px;
+        font-size: 13px;
+        min-width: 36px;
+      }
+    }
+  }
+}
+
+
+
+.custom-select {
+  position: relative;
+  display: inline-block;
+
+  &__btn {
+    padding: 8px 36px 8px 14px;
+    border: 1.5px solid #eee;
+    border-radius: 8px;
+    background: white;
+    font-size: 14px;
+    cursor: pointer;
+    outline: none;
+    position: relative;
+    min-width: 100px;
+    text-align: left;
+    transition: border-color 0.2s;
+
+  
+    &::after {
+      content: "▾";
+      position: absolute;
+      right: 12px;
+      top: 50%;
+      transform: translateY(-50%);
+      pointer-events: none;
+      font-size: 12px;
+      color: #555;
+    }
+
+    &:focus, &:hover { border-color: #6c63ff; }
+  }
+
+  &__list {
+    display: none;
+    position: absolute;
+    top: calc(100% + 4px); 
+    left: 0;
+    background: white;
+    border: 1.5px solid #eee;
+    border-radius: 8px;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+    z-index: 999;
+    min-width: 100%;
+    list-style: none;
+    padding: 6px 0;
+    margin: 0;
+  }
+
+  &.open &__list { display: block; }
+
+  &__item {
+    padding: 9px 16px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background 0.15s;
+    white-space: nowrap;
+
+    &:hover { background: #f5f5f5; }
+    &.active { font-weight: 600; }
+  }
+
+  @media (max-width: 573px) {
+    width: 100%;
+    &__btn { width: 100%; padding: 12px 36px 12px 16px; font-size: 15px; border-radius: 10px; }
+  }
 }

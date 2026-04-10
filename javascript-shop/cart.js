@@ -1,4 +1,4 @@
-// ================= ELEMENTS =================
+
 
 const cartBtn = document.getElementById("cart-btn");
 const cartDrawer = document.getElementById("cart-drawer");
@@ -8,37 +8,37 @@ const cartItemsContainer = document.getElementById("cart-items");
 const cartCount = document.getElementById("cart-count");
 const cartTotal = document.getElementById("cart-total");
 
-// BASE_URL is declared in auth.js — do not redeclare here
+const mobileCartCount = document.getElementById("mobile-cart-count");
 
-// ================= INIT =================
+
 
 document.addEventListener("DOMContentLoaded", () => {
   setupCartEvents();
   loadCart();
 });
 
-// ================= TOKEN =================
+
 
 function getToken() {
   return localStorage.getItem("accessToken");
 }
 
-// ================= AUTH FETCH =================
+
 
 async function authFetch(url, options = {}) {
   const token = getToken();
 
- if (!token) {
-  const overlay = document.getElementById("auth-overlay");
-  const signupForm = document.getElementById("signup-form");
-  const loginWrapper = document.querySelector(".login-wrapper");
+  if (!token) {
+    const overlay = document.getElementById("auth-overlay");
+    const signupForm = document.getElementById("signup-form");
+    const loginWrapper = document.querySelector(".login-wrapper");
 
-  signupForm.style.display = "none";
-  loginWrapper.style.display = "flex";
-  overlay.classList.remove("hidden");
-  document.body.style.overflow = "hidden";
-  return null;
-}
+    signupForm.style.display = "none";
+    loginWrapper.style.display = "flex";
+    overlay.classList.remove("hidden");
+    document.body.style.overflow = "hidden";
+    return null;
+  }
 
   options.headers = {
     "Content-Type": "application/json",
@@ -49,7 +49,7 @@ async function authFetch(url, options = {}) {
   return fetch(url, options);
 }
 
-// ================= EVENTS =================
+
 
 function setupCartEvents() {
   cartBtn?.addEventListener("click", () => {
@@ -66,7 +66,7 @@ function closeCartDrawer() {
   cartOverlay.classList.remove("show");
 }
 
-// ================= LOAD CART =================
+
 
 async function loadCart() {
   const token = getToken();
@@ -107,7 +107,7 @@ async function loadCart() {
   }
 }
 
-// ================= RENDER =================
+
 
 function renderCart(products, total) {
   cartItemsContainer.innerHTML = "";
@@ -116,6 +116,7 @@ function renderCart(products, total) {
     cartItemsContainer.innerHTML = "<p>Your cart is empty</p>";
     cartTotal.textContent = "$0";
     cartCount.textContent = "0";
+    if (mobileCartCount) mobileCartCount.textContent = "0"; 
     return;
   }
 
@@ -128,11 +129,10 @@ function renderCart(products, total) {
     const quantity = item.quantity;
     count += quantity;
 
-    cartItemsContainer.innerHTML += 
     cartItemsContainer.innerHTML += `
   <div class="cart-item">
     <img
-      src="${item.product.thumbnail}"
+      src="${item.product.images?.[0] || item.product.thumbnail || ""}"
       referrerpolicy="no-referrer"
       alt="${item.product.title}"
     >
@@ -154,23 +154,24 @@ function renderCart(products, total) {
 
   cartTotal.textContent = `$${(total?.price?.current || 0).toLocaleString()}`;
   cartCount.textContent = count;
+  if (mobileCartCount) mobileCartCount.textContent = count; 
 }
 
-// ================= ADD =================
+
 
 window.addToCart = async function(productId) {
   const token = getToken();
   if (!token) {
-  const overlay = document.getElementById("auth-overlay");
-  const signupForm = document.getElementById("signup-form");
-  const loginWrapper = document.querySelector(".login-wrapper");
+    const overlay = document.getElementById("auth-overlay");
+    const signupForm = document.getElementById("signup-form");
+    const loginWrapper = document.querySelector(".login-wrapper");
 
-  signupForm.style.display = "none";
-  loginWrapper.style.display = "flex";
-  overlay.classList.remove("hidden");
-  document.body.style.overflow = "hidden";
-  return;
-}
+    signupForm.style.display = "none";
+    loginWrapper.style.display = "flex";
+    overlay.classList.remove("hidden");
+    document.body.style.overflow = "hidden";
+    return;
+  }
 
   let res = await authFetch(`${BASE_URL}/shop/cart/product`, {
     method: "POST",
@@ -183,10 +184,10 @@ window.addToCart = async function(productId) {
     if (err.errorKeys?.includes("errors.already_in_cart") ||
         err.error?.includes("use patch endpoint")) {
 
-      const cartRes = await authFetch(`${BASE_URL}/shop/cart`);
+      const cartRes = await authFetch(`${BASE_URL}/shop/cart?_=${Date.now()}`);
       const cartData = cartRes?.ok ? await cartRes.json() : null;
       const existing = cartData?.products?.find(p => p.productId === productId);
-      const newQty = (existing?.quantity || 1) + 1;
+      const newQty = existing ? existing.quantity + 1 : 1;
 
       res = await authFetch(`${BASE_URL}/shop/cart/product`, {
         method: "PATCH",
@@ -210,7 +211,7 @@ window.addToCart = async function(productId) {
   cartOverlay.classList.add("show");
 };
 
-// ================= UPDATE QUANTITY =================
+
 
 window.updateQuantity = async function(productId, quantity) {
   if (quantity <= 0) {
@@ -224,14 +225,14 @@ window.updateQuantity = async function(productId, quantity) {
   });
 
   if (!res || !res.ok) {
-    alert("Update failed");
+    console.error("Update failed");
     return;
   }
 
-  loadCart();
+  await loadCart();
 };
 
-// ================= REMOVE =================
+
 
 window.removeFromCart = async function(productId) {
   const res = await authFetch(`${BASE_URL}/shop/cart/product`, {
@@ -240,9 +241,9 @@ window.removeFromCart = async function(productId) {
   });
 
   if (!res || !res.ok) {
-    alert("Remove failed");
+    console.error("Remove failed");
     return;
   }
 
-  loadCart();
+  await loadCart();
 };

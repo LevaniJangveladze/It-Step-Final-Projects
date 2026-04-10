@@ -26,16 +26,6 @@ function getAll() {
 
 getAll();
 
-document.addEventListener("click", (e) => {
-  const btn = e.target.closest(".add-to-cart-btn");
-  if (!btn) return;
-  if (btn.disabled) return; // ✅ block clicks on out-of-stock
-
-  const productId = btn.dataset.productId;
-  if (typeof window.addToCart === "function") {
-    window.addToCart(productId);
-  }
-});
 
 
 
@@ -54,7 +44,7 @@ function card(product) {
       <div class="card__price">${product.price.current}$</div>
 
       <div class="card__image-wrapper">
-        <img class="card__image" src="${product.images[0]}" referrerpolicy="no-referrer" alt="${product.title}">
+        <img class="card__image" src="${product.images?.[0] || product.thumbnail || ""}" referrerpolicy="no-referrer" alt="${product.title}">
       </div>
 
       <div class="card__body">
