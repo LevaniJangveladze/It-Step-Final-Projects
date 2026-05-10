@@ -33,4 +33,11 @@ export class ProductService {
   getProductById(id : string): Observable<Product>{
     return this.http.get<Product>(`${this.baseUrl}/shop/products/id/${id}`)
   }
+
+  rateProduct(productId: string, rate: number): Observable<any> {
+  return this.http.post(`${this.baseUrl}/shop/products/rate`,
+    { productId, rate },
+    { headers: { Authorization: `Bearer ${localStorage.getItem('accessToken')}` } }
+  )
+}
 }

@@ -1,5 +1,10 @@
 <div (click)="goToProduct(product._id)" class="card">
-  <div class="card__price">{{product.price.current}}$</div>
+ <div class="card__price-wrapper">
+  @if(product.price.beforeDiscount > product.price.current) {
+    <span class="card__price-old">{{product.price.beforeDiscount}}$</span>
+  }
+  <span class="card__price">{{product.price.current}}$</span>
+</div>
   <div class="card__image-wrapper">
     <img class="card__image" [src]="product.images[0]" [alt]="product.title" referrerpolicy="no-referrer">
   </div>

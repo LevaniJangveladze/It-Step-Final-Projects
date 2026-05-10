@@ -5,9 +5,9 @@
   <span class="span1">Best Price</span>
   <h3 class="text">Incredible Prices <br> on All Your <br> Favorite Items</h3>
   <p class="p1">Get more for less on selected brands</p>
-  <a routerLink="/products">
-    <button class="btn1">Shop Now</button>
-  </a>
+   <a routerLink="/products">
+     <button class="btn1">Shop Now</button>
+   </a>
 </div>
 
 </section>
@@ -19,7 +19,10 @@
 
 <div class="best">
   @for (product of products; track product._id) {
-    <app-product-card [product]="product"></app-product-card>
+    <app-product-card 
+  [product]="product"
+  (addToCart)="handleAddToCart($event)">
+</app-product-card>
   }
 </div>
 
@@ -41,3 +44,5 @@
       <p>Available <br> to you 24/7</p>
     </div>
   </section>
+
+  <app-secret-qr></app-secret-qr>

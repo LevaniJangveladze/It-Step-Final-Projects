@@ -15,18 +15,7 @@
     cursor: pointer;
   }
 
-  &__price {
-    position: absolute;
-    top: 0;
-    right: 0;
-    background: #111;
-    color: white;
-    padding: 8px 12px;
-    border-bottom-left-radius: 12px;
-    font-weight: 700;
-    font-size: 14px;
-    z-index: 1;
-  }
+
 
   &__image-wrapper {
     background: white;
@@ -98,4 +87,31 @@
       &:hover { background: #ddd; transform: none; }
     }
   }
+}
+
+.card__price-wrapper {
+  position: absolute;
+  top: 0;
+  right: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 2px;
+  padding: 8px 10px;
+  background: #111;
+  border-bottom-left-radius: 12px;
+  z-index: 1;
+}
+
+.card__price-old {
+  font-size: 11px;
+  color: #ff6b6b;
+  text-decoration: line-through;
+  font-weight: 500;
+}
+
+.card__price {
+  font-size: 14px;
+  color: #fff;
+  font-weight: 700;
 }

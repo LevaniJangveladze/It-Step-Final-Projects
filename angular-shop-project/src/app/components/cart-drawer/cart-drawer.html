@@ -1,1 +1,38 @@
-<p>cart-drawer works!</p>
+<div class="cart-drawer" 
+  [class.open]="cartService.isCartOpen()"
+ >
+  <div class="cart-header">
+    <h3>Cart</h3>
+    <button id="close-cart" (click)="closeCart()">✕</button>
+  </div>
+
+  <div class="cart-items">
+    @if(enrichedItems.length === 0) {
+      <p>Your cart is empty</p>
+    }
+    @for (item of enrichedItems; track $index) {
+      <div class="cart-item">
+        <img [src]="item.product?.images?.[0] ?? ''" referrerpolicy="no-referrer">
+        <div class="cart-info">
+          <p>{{ item.product?.title }}</p>
+          <p>{{ item.pricePerQuantity }}$</p>
+        </div>
+        <div class="cart-controls">
+          <div class="cart-quantity">
+            <button (click)="updateQuantity(item.productId, item.quantity - 1)">−</button>
+            <span>{{ item.quantity }}</span>
+            <button (click)="updateQuantity(item.productId, item.quantity + 1)">+</button>
+          </div>
+          <button class="remove-btn" (click)="removeFromCart(item.productId)">Remove</button>
+        </div>
+      </div>
+    }
+  </div>
+
+  <div class="cart-footer">
+    <h4>Total: <span>{{cartService.cartTotal()}}$</span></h4>
+    <button id="checkout-btn" (click)="checkout()">
+  Proceed to Checkout
+</button>
+  </div>
+</div>

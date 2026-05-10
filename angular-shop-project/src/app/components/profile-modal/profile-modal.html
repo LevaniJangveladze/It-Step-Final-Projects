@@ -1,0 +1,165 @@
+@if (authService.isProfileOpen()) {
+  <div class="overlay">
+    <div class="auth-modal">
+      <button class="close-btn" (click)="authService.isProfileOpen.set(false)">✕</button>
+      <h2>Your Profile</h2>
+      <hr>
+
+     
+      <div class="profile-tabs">
+        <button
+          [class.active]="activeTab() === 'profile'"
+          (click)="activeTab.set('profile')">
+          👤 Profile
+        </button>
+        <button
+          [class.active]="activeTab() === 'analytics'"
+          (click)="activeTab.set('analytics')">
+          📊 Analytics
+        </button>
+      </div>
+
+    
+      @if(activeTab() === 'profile') {
+        <form class="auth-form" [formGroup]="profileForm" (ngSubmit)="updateProfile()">
+          <div class="row">
+            <div class="input-group">
+              <i class="fa-solid fa-user"></i>
+              <input type="text" formControlName="firstName" placeholder="First Name">
+            </div>
+            <div class="input-group">
+              <i class="fa-solid fa-user"></i>
+              <input type="text" formControlName="lastName" placeholder="Last Name">
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="input-group">
+              <i class="fa-solid fa-cake-candles"></i>
+              <input type="text" formControlName="age" placeholder="Age">
+            </div>
+            <div class="input-group">
+              <i class="fa-solid fa-map"></i>
+              <input type="text" formControlName="address" placeholder="Address">
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="input-group">
+              <i class="fa-solid fa-phone"></i>
+              <input type="text" formControlName="phone" placeholder="Phone">
+            </div>
+            <div class="input-group">
+              <i class="fa-solid fa-location-dot"></i>
+              <input type="number" formControlName="zipcode" placeholder="Zipcode">
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="input-group">
+              <i class="fa-solid fa-image"></i>
+              <input type="text" formControlName="avatar" placeholder="Avatar URL">
+            </div>
+            <div class="input-group">
+              <i class="fa-solid fa-venus-mars"></i>
+              <select formControlName="gender">
+                <option value="MALE">MALE</option>
+                <option value="FEMALE">FEMALE</option>
+              </select>
+            </div>
+          </div>
+
+          @if(successMessage()) {
+            <p class="success-message">{{successMessage()}}</p>
+          }
+
+          <button type="submit" class="auth-btn">Update Profile</button>
+        </form>
+
+        <form class="auth-form" [formGroup]="passwordForm" (ngSubmit)="changePassword()">
+          <div class="input-group">
+            <i class="fa-solid fa-lock"></i>
+            <input
+              [type]="showOldPassword() ? 'text' : 'password'"
+              formControlName="oldPassword"
+              placeholder="Old password">
+            <i class="fa-solid eye-toggle"
+               [class.fa-eye]="!showOldPassword()"
+               [class.fa-eye-slash]="showOldPassword()"
+               (click)="showOldPassword.update(v => !v)">
+            </i>
+          </div>
+
+          <div class="input-group">
+            <i class="fa-solid fa-lock"></i>
+            <input
+              [type]="showNewPassword() ? 'text' : 'password'"
+              formControlName="newPassword"
+              placeholder="New Password">
+            <i class="fa-solid eye-toggle"
+               [class.fa-eye]="!showNewPassword()"
+               [class.fa-eye-slash]="showNewPassword()"
+               (click)="showNewPassword.update(v => !v)">
+            </i>
+          </div>
+
+          @if(passwordSuccess()) {
+            <p class="success-message">✅ Password changed successfully!</p>
+          }
+
+          <button type="submit" class="auth-btn">Change Password</button>
+        </form>
+      }
+
+      
+      @if(activeTab() === 'analytics') {
+        <div class="analytics-section">
+
+          
+          <div class="stats-grid">
+            <div class="stat-card">
+              <span class="stat-icon">🛒</span>
+              <div>
+                <p class="stat-label">Items in Cart</p>
+                <p class="stat-value">{{cartService.cartItems().length}}</p>
+              </div>
+            </div>
+            <div class="stat-card">
+              <span class="stat-icon">💰</span>
+              <div>
+                <p class="stat-label">Cart Total</p>
+                <p class="stat-value">${{cartService.cartTotal()}}</p>
+              </div>
+            </div>
+            <div class="stat-card">
+              <span class="stat-icon">✅</span>
+              <div>
+                <p class="stat-label">Verified</p>
+                <p class="stat-value">{{authService.currentUser()?.verified ? 'Yes' : 'No'}}</p>
+              </div>
+            </div>
+            <div class="stat-card">
+              <span class="stat-icon">👤</span>
+              <div>
+                <p class="stat-label">Member</p>
+                <p class="stat-value">{{authService.currentUser()?.firstName}}</p>
+              </div>
+            </div>
+          </div>
+
+          
+          @if(cartService.cartItems().length > 0) {
+            <div class="chart-wrapper">
+              <h3>Cart Breakdown</h3>
+              <canvas #barChart></canvas>
+            </div>
+          } @else {
+            <p class="empty-cart">🛒 Add items to cart to see analytics!</p>
+          }
+
+        </div>
+      }
+
+    </div>
+  </div>
+}

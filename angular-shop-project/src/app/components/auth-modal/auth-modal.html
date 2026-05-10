@@ -1,1 +1,98 @@
-<p>auth-modal works!</p>
+@if(auth.isAuthOpen()){
+  <div class="overlay">
+    <div class="auth-modal">
+      <button class="close-btn" (click)="auth.toggleAuth()">✕</button>
+
+      @if(auth.authType() === 'login') {
+        <h2>Sign In</h2>
+        <hr>
+        <form class="auth-form" [formGroup]="loginForm" (ngSubmit)="login()">
+          <div class="input-group full">
+            <i class="fa-solid fa-envelope"></i>
+            <input type="email" formControlName="email" placeholder="Email">
+          </div>
+          <div class="input-group full">
+            <i class="fa-solid fa-lock"></i>
+            <input type="password" formControlName="password" placeholder="Password">
+          </div>
+          <button type="submit" class="auth-btn">Sign In</button>
+          <p (click)="auth.authType.set('signup')" style="text-align:center; margin-top:15px; cursor:pointer;">
+            Don't have account? Register
+          </p>
+        </form>
+
+      } @else {
+        <h2>Create Account</h2>
+        <hr>
+        <form class="auth-form" [formGroup]="registerForm" (ngSubmit)="register()">
+          <div class="row">
+            <div class="input-group">
+              <i class="fa-solid fa-user"></i>
+              <input type="text" formControlName="firstName" placeholder="First Name">
+            </div>
+            <div class="input-group">
+              <i class="fa-solid fa-user"></i>
+              <input type="text" formControlName="lastName" placeholder="Last Name">
+            </div>
+          </div>
+          <div class="row">
+            <div class="input-group">
+              <i class="fa-solid fa-envelope"></i>
+              <input type="email" formControlName="email" placeholder="Email">
+            </div>
+            <div class="input-group">
+              <i class="fa-solid fa-lock"></i>
+              <input type="password" formControlName="password" placeholder="Password">
+            </div>
+          </div>
+          <div class="row">
+            <div class="input-group">
+              <i class="fa-solid fa-phone"></i>
+              <input type="text" formControlName="phone" placeholder="Phone">
+            </div>
+            <div class="input-group">
+              <i class="fa-solid fa-location-dot"></i>
+              <input type="text" formControlName="zipcode" placeholder="ZIP Code">
+            </div>
+          </div>
+          <div class="row">
+            <div class="input-group">
+              <i class="fa-solid fa-map"></i>
+              <input type="text" formControlName="address" placeholder="Address">
+            </div>
+            <div class="input-group">
+              <i class="fa-solid fa-cake-candles"></i>
+              <input type="number" formControlName="age" placeholder="Age">
+            </div>
+          </div>
+          <div class="input-group full">
+            <i class="fa-solid fa-image"></i>
+            <input type="text" formControlName="avatar" placeholder="Avatar URL">
+          </div>
+          <div class="input-group full">
+            <i class="fa-solid fa-venus-mars"></i>
+            <select formControlName="gender">
+              <option value="">Select gender</option>
+              <option value="MALE">Male</option>
+              <option value="FEMALE">Female</option>
+            </select>
+          </div>
+          @if(registrationSuccess()) {
+  <p style="color:#34c759;text-align:center;margin-bottom:10px;font-weight:600;">
+    ✅ Account created! Check your email to verify!
+  </p>
+}
+@if(registrationError()) {
+  <p style="color:#ff3b30;text-align:center;margin-bottom:10px;font-weight:600;">
+    ❌ {{registrationError()}}
+  </p>
+}
+          <button type="submit" class="auth-btn">Register</button>
+          <p (click)="auth.authType.set('login')" style="text-align:center; margin-top:15px; cursor:pointer;">
+            Already have account? Login
+          </p>
+        </form>
+      }
+    </div>
+  </div>
+}

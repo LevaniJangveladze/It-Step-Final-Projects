@@ -1,0 +1,193 @@
+<div class="logos-btn" (click)="toggleLogos()">
+  <div class="logos-btn__pulse"></div>
+  <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+  </svg>
+</div>
+
+<div class="logos-overlay" [class.show]="isOpen()" (click)="toggleLogos()"></div>
+
+<div class="logos-drawer" [class.open]="isOpen()">
+  <div class="logos-header">
+    <div class="logos-header__info">
+      <div class="logos-header__avatar">Λ</div>
+      <div>
+        <h4>Logos</h4>
+        <span>AI Shopping Assistant</span>
+      </div>
+    </div>
+    <button class="logos-close" (click)="toggleLogos()">✕</button>
+  </div>
+
+  <div class="logos-messages" #messagesContainer>
+    @for(msg of messages(); track $index) {
+      <div class="logos-message"
+        [class.logos-message--ai]="msg.role === 'ai'"
+        [class.logos-message--user]="msg.role === 'user'">
+
+        @if(msg.text) {
+          <div class="logos-message__bubble" [innerHTML]="formatText(msg.text)"></div>
+        }
+
+        @if(msg.products && msg.products.length > 0) {
+          <div style="display:flex;flex-direction:column;gap:8px;width:100%;margin-top:8px">
+            @for(product of msg.products; track product._id) {
+              <div style="display:flex;flex-direction:column;gap:4px">
+                <a class="logos-product-card" [routerLink]="['/product', product._id]" (click)="toggleLogos()">
+                  <img [src]="product.images?.[0] || product.thumbnail" [alt]="product.title" referrerpolicy="no-referrer">
+                  <div class="logos-product-card__info">
+                    <div class="logos-product-card__title">{{product.title}}</div>
+                    <div class="logos-product-card__price">${{product.price?.current}}</div>
+                  </div>
+                </a>
+                <button
+                  style="width:100%;padding:8px;background:linear-gradient(135deg,#6366f1,#8b5cf6);color:#fff;border:none;border-radius:8px;font-size:12px;font-weight:600;cursor:pointer;"
+                  (click)="sendQuickReply('Add ' + product.title)">
+                  🛒 Add to Cart
+                </button>
+              </div>
+            }
+          </div>
+        }
+
+        @if(msg.comparison) {
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;width:100%;margin-top:8px;align-items:stretch">
+            @for(p of [msg.comparison.a, msg.comparison.b]; track $index) {
+              @if(p) {
+                <div style="display:flex;flex-direction:column;gap:4px;height:100%">
+                  <a class="logos-product-card comparison-card"
+                     [routerLink]="['/product', p._id]"
+                     (click)="toggleLogos()"
+                     style="flex:1">
+                    <img [src]="p.images?.[0]" [alt]="p.title" referrerpolicy="no-referrer"
+                         style="width:56px;height:56px;margin-bottom:8px">
+                    <div class="logos-product-card__info">
+                      <div class="logos-product-card__title"
+                           style="white-space:normal;font-size:12px;line-height:1.4;min-height:36px">
+                        {{p.title}}
+                      </div>
+                      <div class="logos-product-card__price">${{p.price?.current}}</div>
+                    </div>
+                  </a>
+                  <button
+                    style="width:100%;padding:6px;background:linear-gradient(135deg,#6366f1,#8b5cf6);color:#fff;border:none;border-radius:8px;font-size:11px;font-weight:600;cursor:pointer;"
+                    (click)="sendQuickReply('Add ' + p.title)">
+                    🛒 Add to Cart
+                  </button>
+                </div>
+              }
+            }
+          </div>
+
+          <button
+            style="width:100%;margin-top:8px;padding:8px;background:rgba(99,102,241,0.15);border:1px solid rgba(99,102,241,0.4);color:#a5b4fc;border-radius:8px;font-size:12px;font-weight:600;cursor:pointer;"
+            (click)="openComparison(msg.comparison.a, msg.comparison.b)">
+            📊 View Detailed Comparison
+          </button>
+        }
+
+      </div>
+    }
+
+    @if(isTyping()) {
+      <div class="logos-message logos-message--ai">
+        <div class="logos-typing">
+          <span></span><span></span><span></span>
+        </div>
+      </div>
+    }
+  </div>
+
+  <div class="logos-input-area">
+    <input
+      type="text"
+      [(ngModel)]="inputText"
+      placeholder="Ask me anything..."
+      (keydown)="onKeydown($event)"
+      [disabled]="isTyping()">
+    <button class="logos-send" (click)="sendMessage()" [disabled]="isTyping()">
+      <svg viewBox="0 0 24 24" fill="white">
+        <path d="M22 2L11 13M22 2L15 22 11 13 2 9l20-7z"/>
+      </svg>
+    </button>
+  </div>
+</div>
+
+@if(showComparisonModal() && comparisonProducts()) {
+  <div class="comparison-modal-overlay" (click)="closeComparison()">
+    <div class="comparison-modal" (click)="$event.stopPropagation()">
+      <button class="comparison-modal__close" (click)="closeComparison()">✕</button>
+      <h2 class="comparison-modal__title">📊 Product Comparison</h2>
+
+      <div class="comparison-modal__grid">
+        @for(p of [comparisonProducts()!.a, comparisonProducts()!.b]; track $index) {
+          @if(p) {
+            <div class="comparison-modal__product">
+              <img [src]="p.images?.[0]" [alt]="p.title" referrerpolicy="no-referrer">
+              <h3>{{p.title}}</h3>
+
+              <!-- specs wrapper — takes all available space! -->
+              <div class="specs-wrapper">
+                <div class="comparison-modal__spec">
+                  <span>💰 Price</span>
+                  <strong>${{p.price?.current}}</strong>
+                </div>
+
+                @if(p.price?.beforeDiscount > p.price?.current) {
+                  <div class="comparison-modal__spec">
+                    <span>🏷️ Was</span>
+                    <strong style="text-decoration:line-through;color:#888">
+                      ${{p.price?.beforeDiscount}}
+                    </strong>
+                  </div>
+                }
+
+                <div class="comparison-modal__spec">
+                  <span>⭐ Rating</span>
+                  <strong>{{p.rating?.toFixed(1)}}/5</strong>
+                </div>
+
+                <div class="comparison-modal__spec">
+                  <span>📦 Stock</span>
+                  <strong [style.color]="p.stock > 0 ? '#34c759' : '#ff3b30'">
+                    {{p.stock > 0 ? p.stock + ' units' : 'Out of Stock'}}
+                  </strong>
+                </div>
+
+                <div class="comparison-modal__spec">
+                  <span>🏢 Brand</span>
+                  <strong>{{p.brand}}</strong>
+                </div>
+
+                <div class="comparison-modal__spec">
+                  <span>📁 Category</span>
+                  <strong>{{p.category?.name}}</strong>
+                </div>
+
+                @if(p.warranty) {
+                  <div class="comparison-modal__spec">
+                    <span>🛡️ Warranty</span>
+                    <strong>{{p.warranty}} years</strong>
+                  </div>
+                }
+              </div>
+
+              <!-- buttons always at bottom! -->
+              <a [routerLink]="['/product', p._id]"
+                 (click)="closeComparison(); toggleLogos()"
+                 style="display:block;margin-top:16px;padding:10px;background:linear-gradient(135deg,#6366f1,#8b5cf6);color:#fff;border-radius:10px;text-align:center;text-decoration:none;font-weight:600;font-size:13px">
+                View Product →
+              </a>
+
+              <button
+                style="width:100%;margin-top:8px;padding:10px;background:rgba(99,102,241,0.15);border:1px solid rgba(99,102,241,0.4);color:#a5b4fc;border-radius:10px;font-size:13px;font-weight:600;cursor:pointer;"
+                (click)="sendQuickReply('Add ' + p.title); closeComparison()">
+                🛒 Add to Cart
+              </button>
+            </div>
+          }
+        }
+      </div>
+    </div>
+  </div>
+}

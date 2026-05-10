@@ -1,25 +1,106 @@
-<div class="filter-header" (click)="toggleCategory()">
-  <span>Category</span>
-  <span class="plus">+</span>
-</div>
+<div class="aside-products-container">
+  <aside class="sidebar">
+    <div class="filter-header" (click)="toggleCategory()">
+      <span>Category</span>
+      <span class="plus">+</span>
+    </div>
 
-@if(showCategories) {
-     @for (category of categories; track $index) {
-      <div class="category-item" (click)="filterByCategory(category.id)" >
-         {{category.name}}
-      </div>
-    }
-}
-
-<div class="brand-header" (click)="toggleBrand()">
-   <span>Brand</span>
-   <span class="plus">+</span>
-</div>
-
-@if(showBrands){
-    @for (brand of brands; track $index) {
-        <div class="brand-item" (click)="filterByBrand(brand)">
-            {{brand}}
+    @if(showCategories()) {
+      @for (category of categories; track $index) {
+        <div class="category-item" 
+          (click)="filterByCategory(category.id)"
+          [class.active]="searchParams.category_id === category.id">
+          <span class="category-icon">
+            @if(category.name === 'laptops') { 💻 }
+            @if(category.name === 'phones') { 📱 }
+          </span>
+          <span class="category-name">{{category.name | uppercase}}</span>
         </div>
+      }
     }
-}
+
+    <div class="filter-header" (click)="toggleBrand()">
+      <span>Brand</span>
+      <span class="plus">+</span>
+    </div>
+
+    @if(showBrands()) {
+      @for (brand of brands; track $index) {
+        <div class="brand-item" 
+          (click)="filterByBrand(brand)"
+          [class.active]="searchParams.brand === brand">
+          <span class="brand-icon">🏷</span>
+          <span class="brand-name">{{brand | uppercase}}</span>
+        </div>
+      }
+    }
+
+    <div class="filter-header" (click)="toggleRating()">
+      <span>Rating</span>
+      <span class="plus">+</span>
+    </div>
+
+    @if(showRatings()) {
+      @for (rating of ratings; track $index) {
+        <div class="rating-item" 
+          (click)="filterByRating(rating)"
+          [class.active]="searchParams.rating === rating.toString()">
+          @for (star of [1,2,3,4,5]; track $index) {
+            {{ $index < rating ? '★' : '☆' }}
+          }
+        </div>
+      }
+    }
+
+    <div class="filter-header" (click)="togglePrice()">
+      <span>Price</span>
+      <span class="plus">+</span>
+    </div>
+
+    @if(showPrice()) {
+      <div class="price-inputs">
+        <input type="number" [(ngModel)]="searchParams.price_min" placeholder="Min">
+        <input type="number" [(ngModel)]="searchParams.price_max" placeholder="Max">
+      </div>
+      <button class="price-btn" (click)="filterByPrice()">Apply Filter</button>
+    }
+
+    <div class="get-all" (click)="clearAllFilters()">
+      GET ALL <span class="arrow">↩</span>
+    </div>
+  </aside>
+
+  <div class="products-page">
+    <div class="products-grid">
+      @for (product of products; track product._id) {
+        <app-product-card
+          [product]="product"
+          (addToCart)="handleAddToCart($event)">
+        </app-product-card>
+      }
+    </div>
+
+    <div class="pagination-bar">
+      <select (change)="changePageSize($event)">
+        <option value="6">6</option>
+        <option value="9">9</option>
+        <option value="15">15</option>
+        <option value="38">All</option>
+      </select>
+
+      <div class="pagination">
+        @for (pagination of pages; track $index) {
+          <button (click)="changePage(pagination)">{{pagination}}</button>
+        }
+      </div>
+
+      <select (change)="changeSort($event)">
+        <option value="">Sort by</option>
+        <option value="price_asc">Price ↑</option>
+        <option value="price_desc">Price ↓</option>
+        <option value="rating_asc">Rating ↑</option>
+        <option value="rating_desc">Rating ↓</option>
+      </select>
+    </div>
+  </div>
+</div>

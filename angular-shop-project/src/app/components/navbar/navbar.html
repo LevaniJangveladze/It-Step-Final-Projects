@@ -9,21 +9,95 @@
 </div>
 
     <div class="search">
-     <input type="text" name="" id="">
+     <input type="text" [(ngModel)]="searchTerm" (keyup.enter)="search()" (input)="fetchSuggestions()" placeholder="Search products...">
+
+         @if(showResults()) {
+  <div class="search-results">
+    @for (result of searchResults; track $index) {
+      <div class="search-item" (click)="goToProduct(result._id)">
+        <img [src]="result.images[0]" referrerpolicy="no-referrer">
+        <span>{{result.title}}</span>
+        <span class="search-item-price">{{result.price.current}}$</span>
+      </div>
+    }
+  </div>
+}
     </div>
 
-    <div class="actions">
-    @if (!isLoggedIn) {
-        <p>Sign up</p>
-        <p>Log in</p>
-    }
-    @if (isLoggedIn) {
-        <i class="fa-solid fa-user"></i>
-        <i class="fa-solid fa-cart-shopping"></i>
-        <span>{{cartCount}}</span> 
-        <p (click)="logout()">Log out</p>
-    }
-    </div>
+    
+
+    
+
+  <div class="actions">
+  @if (!authService.isLoggedIn()) {
+    <p (click)="openAuth('signup')">
+      <i class="fa-solid fa-user-plus"></i> Sign up
+    </p>
+    <p (click)="openAuth('login')">
+      <i class="fa-solid fa-right-to-bracket"></i> Log in
+    </p>
+  }
+
+  <button class="theme-toggle" (click)="theme.toggleDarkMode()">
+  @if(theme.isDarkMode()) {
+    ☀️
+  } @else {
+    🌙
+  }
+</button>
+
+  @if (authService.isLoggedIn()) {
+    <span class="action-icon" (click)="openProfile()">
+      <i class="fa-solid fa-user"></i>
+    </span>
+    <span class="action-icon cart-icon" (click)="openCart()">
+      <i class="fa-solid fa-cart-shopping"></i>
+      @if(cartService.cartCount > 0) {
+        <span class="cart-badge">{{cartService.cartCount}}</span>
+      }
+    </span>
+    <p (click)="logout()">
+      <i class="fa-solid fa-right-from-bracket"></i> Log out
+    </p>
+  }
+</div>
+
+    <button class="burger-btn" (click)="openBurger()" [class.active]="isMobileOpen()">
+  <span></span>
+  <span></span>
+  <span></span>
+</button>
+
+
   </div>
+
+<div class="mobile-menu" [class.open]="isMobileOpen()">
+  <div class="mobile-actions">
+    @if (!authService.isLoggedIn()) {
+      <div class="mobile-action" (click)="openAuth('signup')">
+        <i class="fa-solid fa-user-plus"></i>
+        <span>Sign up</span>
+      </div>
+      <div class="mobile-action" (click)="openAuth('login')">
+        <i class="fa-solid fa-right-to-bracket"></i>
+        <span>Log in</span>
+      </div>
+    }
+    @if (authService.isLoggedIn()) {
+      <div class="mobile-action" (click)="openProfile()">
+        <i class="fa-solid fa-user"></i>
+        <span>Profile</span>
+      </div>
+      <div class="mobile-action" (click)="openCart()">
+        <i class="fa-solid fa-cart-shopping"></i>
+        <span>Cart</span>
+      </div>
+      <div class="mobile-action" (click)="logout()">
+        <i class="fa-solid fa-right-from-bracket"></i>
+        <span>Sign out</span>
+      </div>
+    }
+  </div>
+</div>
 
 </header>

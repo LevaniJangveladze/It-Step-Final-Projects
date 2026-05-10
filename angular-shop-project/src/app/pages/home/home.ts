@@ -1,15 +1,19 @@
-import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef, inject } from '@angular/core';
 import { ProductService } from '../../services/product';
 import { Product } from '../../models/product';
 import { ProductCard } from '../../components/product-card/product-card';
+import { RouterLink } from "@angular/router";
+import { CartService } from '../../services/cart';
+import { SecretQr } from '../../components/secret-qr/secret-qr';
 
 @Component({
   selector: 'app-home',
-  imports: [ProductCard],
+  imports: [ProductCard, RouterLink, SecretQr],
   templateUrl: './home.html',
   styleUrl: './home.scss',
 })
 export class Home implements OnInit{
+  cartService = inject(CartService)
   products: Product[] = [];
   constructor(
     private productService:ProductService,
@@ -33,4 +37,9 @@ export class Home implements OnInit{
   images = ['images/bluelaptop.jpg', 'images/samsung.jpg', 'images/smartwatch.jpg', 'images/work.jpg'];
   currentIndex = 0;
   
+  
+
+handleAddToCart(productId: string){
+  this.cartService.handleAddToCart(productId);
+}
 }

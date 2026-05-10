@@ -1,3 +1,12 @@
 <app-navbar></app-navbar>
 <router-outlet></router-outlet>
+<app-cart-drawer></app-cart-drawer>
+<div class="cart-overlay"
+[class.show]="cartService.isCartOpen()" 
+(click)="cartService.toggleCart()"
+></div>
+<app-auth-modal></app-auth-modal>
+<app-profile-modal></app-profile-modal>
+<app-logos></app-logos>
 <app-footer></app-footer>
+

@@ -1,1 +1,91 @@
-<p>product-detail works!</p>
+@if(singleProduct()){
+  <div class="product-wrapper">
+
+    <div class="product-gallery">
+      <button class="prev" (click)="prevImage()">←</button>
+      <img [src]="singleProduct()?.images?.[currentIndex()]" referrerpolicy="no-referrer">
+      <button class="next" (click)="nextImage()">→</button>
+    </div>
+
+    <div class="product-info">
+      <h1>{{ singleProduct()?.title }}</h1>
+
+      <div class="price">
+        <span class="current">{{ singleProduct()?.price?.current }}$</span>
+        @if(hasDiscount) {
+          <span class="old-price">{{ singleProduct()?.price?.beforeDiscount }}$</span>
+        }
+      </div>
+
+      <div class="rating">
+        <span class="stars">{{ getStars(singleProduct()?.rating || 0) }}</span>
+        <span class="rating-number">{{ singleProduct()?.rating?.toFixed(1) }}</span>
+      </div>
+
+      <div class="stock"
+        [class.out]="(singleProduct()?.stock ?? 0) <= 0"
+        [class.in]="(singleProduct()?.stock ?? 0) > 0">
+        {{ (singleProduct()?.stock ?? 0) <= 0 ? '✖ Out of Stock' : '✔ In Stock' }}
+      </div>
+
+      <p class="stock-count">
+  <strong>{{ singleProduct()?.stock }}</strong> units available
+</p>
+
+      <p class="product-desc">Product Description</p>
+      <hr>
+      <p>{{ singleProduct()?.description }}</p>
+
+      <div class="features">
+        <div class="feature"><span>📅</span><p>3 Year full warranty</p></div>
+        <div class="feature"><span>💳</span><p>Secure payment</p></div>
+        <div class="feature"><span>🚚</span><p>Worldwide shipping</p></div>
+      </div>
+
+      <ul>
+        <li>Category: {{ singleProduct()?.category?.name }}</li>
+        <li>Brand: {{ singleProduct()?.brand }}</li>
+      </ul>
+
+      <button
+        class="add-to-cart"
+        [class.disabled]="(singleProduct()?.stock ?? 0) <= 0"
+        [disabled]="(singleProduct()?.stock ?? 0) <= 0"
+        (click)="addToCart()">
+        {{ (singleProduct()?.stock ?? 0) <= 0 ? 'Out of Stock' : 'Add to Cart' }}
+      </button>
+
+      <!-- Rating Section -->
+      @if(authService.isLoggedIn()) {
+        <div class="rating-section">
+          <h3>Rate this product:</h3>
+          <div class="star-picker">
+            @for(star of [1,2,3,4,5]; track star) {
+              <span
+                class="star-pick"
+                [class.active]="star <= selectedRating()"
+                (click)="setRating(star)">★</span>
+            }
+          </div>
+          @if(ratingSubmitted()) {
+            <p class="rating-success">✅ Thank you for your rating!</p>
+          }
+          @if(ratingError()) {
+            <p class="rating-error">{{ratingError()}}</p>
+          }
+          <button
+            class="rating-btn"
+            [disabled]="selectedRating() === 0 || ratingSubmitted()"
+            (click)="submitRating()">
+            Submit Rating
+          </button>
+        </div>
+      }
+
+      @if(!authService.isLoggedIn()) {
+        <p class="rating-login">Please <strong>log in</strong> to rate this product!</p>
+      }
+
+    </div>
+  </div>
+}

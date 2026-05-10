@@ -2,6 +2,7 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Product } from '../../models/product';
 import { Router, RouterModule } from '@angular/router';
 
+
 @Component({
   selector: 'app-product-card',
   imports: [RouterModule],
