@@ -4,6 +4,8 @@ import { CartItem } from '../../models/cart';
 import { Product } from '../../models/product';
 import { ProductService } from '../../services/product';
 import { ChangeDetectorRef } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { AuthService } from '../../services/auth';
 
 @Component({
   selector: 'app-cart-drawer',
@@ -16,6 +18,8 @@ export class CartDrawer implements OnInit {
   productService = inject(ProductService);
   cdr = inject(ChangeDetectorRef);
   enrichedItems: (CartItem & { product?: Product })[] = [];
+  http = inject(HttpClient);
+  authService = inject(AuthService);
 
   constructor(){
     // only watches open state — no cartUpdated effect!
@@ -57,30 +61,49 @@ export class CartDrawer implements OnInit {
       return;
     }
     this.cartService.updateQuantity(productId, quantity).subscribe(() => {
-      this.loadCart(); // ← just call directly!
+      this.loadCart(); 
     })
   }
 
   removeFromCart(productId: string){
     this.cartService.removeFromCart(productId).subscribe(() => {
-      this.loadCart(); // ← just call directly!
+      this.loadCart(); 
     })
   }
 
-  checkout(){
+checkout() {
+  
+  this.authService.getUser().subscribe(user => {
+    // 2. Build the payload
+   const payload = {
+  email: user.email,
+  items: this.enrichedItems.map(item => ({
+    title: item.product?.title,
+    price: item.pricePerQuantity,
+    quantity: item.quantity,
+    image: item.product?.images?.[0] ?? ''  
+  })),
+  total: this.cartService.cartTotal()
+};
+
+    // 3. Send to n8n webhook
+    this.http.post('http://localhost:5678/webhook/64182f16-a053-44a7-983d-73eea69e1071', payload).subscribe();
+
+    // 4. Proceed with checkout as before
     this.cartService.checkout().subscribe({
       next: () => {
         this.enrichedItems = [];
-        this.cartService.cartTotal.set(0); // ← clear total immediately!
-        this.cartService.cartItems.set([]); // ← clear items immediately!
+        this.cartService.cartTotal.set(0);
+        this.cartService.cartItems.set([]);
         this.cdr.detectChanges();
         this.cartService.isCartOpen.set(false);
-        alert('Order placed successfully! 🎉');
+        alert('Order placed! Confirmation email sent! 🎉');
         window.location.reload();
       },
       error: () => {
-        alert('Checkout failed. Please try again!')
+        alert('Checkout failed. Please try again!');
       }
-    })
-  }
+    });
+  });
+}
 }
