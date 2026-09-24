@@ -1,2 +1,6 @@
 .DS_Store
 *.css.map
+bin/
+obj/
+.idea/
+appsettings.json
