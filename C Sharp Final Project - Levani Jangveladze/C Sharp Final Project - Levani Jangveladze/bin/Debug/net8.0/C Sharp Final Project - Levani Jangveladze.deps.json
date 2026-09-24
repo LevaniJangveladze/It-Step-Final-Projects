@@ -1,0 +1,23 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v8.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v8.0": {
+      "C Sharp Final Project - Levani Jangveladze/1.0.0": {
+        "runtime": {
+          "C Sharp Final Project - Levani Jangveladze.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "C Sharp Final Project - Levani Jangveladze/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}

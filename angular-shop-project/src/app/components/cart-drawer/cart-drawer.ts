@@ -22,7 +22,7 @@ export class CartDrawer implements OnInit {
   authService = inject(AuthService);
 
   constructor(){
-    // only watches open state — no cartUpdated effect!
+    
     effect(() => {
       const isOpen = this.cartService.isCartOpen();
       if(isOpen && localStorage.getItem('accessToken')) {
@@ -72,24 +72,22 @@ export class CartDrawer implements OnInit {
   }
 
 checkout() {
-  
   this.authService.getUser().subscribe(user => {
-    // 2. Build the payload
-   const payload = {
-  email: user.email,
-  items: this.enrichedItems.map(item => ({
-    title: item.product?.title,
-    price: item.pricePerQuantity,
-    quantity: item.quantity,
-    image: item.product?.images?.[0] ?? ''  
-  })),
-  total: this.cartService.cartTotal()
-};
 
-    // 3. Send to n8n webhook
-    this.http.post('http://localhost:5678/webhook/64182f16-a053-44a7-983d-73eea69e1071', payload).subscribe();
+    const payload = {
+      email: user.email,
+      name: user.firstName + ' ' + user.lastName,
+      items: this.enrichedItems.map(item => ({
+        title: item.product?.title,
+        price: item.pricePerQuantity,
+        quantity: item.quantity,
+        image: item.product?.images?.[0] ?? ''
+      })),
+      total: this.cartService.cartTotal()
+    };
 
-    // 4. Proceed with checkout as before
+this.http.post('https://encroach-monorail-obsessed.ngrok-free.dev/webhook/smart-order', payload).subscribe();
+
     this.cartService.checkout().subscribe({
       next: () => {
         this.enrichedItems = [];

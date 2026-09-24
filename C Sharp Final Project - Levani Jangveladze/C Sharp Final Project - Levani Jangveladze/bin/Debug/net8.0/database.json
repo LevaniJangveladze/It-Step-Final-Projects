@@ -1,0 +1,179 @@
+{
+  "Games": [
+    {
+      "Name": "Doom Eternal",
+      "Studio": "id Software",
+      "Description": "Rip and tear demons across dimensions.",
+      "Genre": "Shooter",
+      "MinPlayers": 1,
+      "MaxPlayers": 4,
+      "Stock": 5,
+      "ReleasedAt": "2020-03-20T00:00:00",
+      "Id": 1
+    },
+    {
+      "Name": "God of War: Ragnarok",
+      "Studio": "Santa Monica Studio",
+      "Description": "God of War Ragnar\u00F6k is a 2022 action-adventure game developed by Santa Monica Studio and published by Sony Interactive Entertainment.",
+      "Genre": "Adventure",
+      "MinPlayers": 1,
+      "MaxPlayers": 2,
+      "Stock": 10,
+      "ReleasedAt": "2022-11-09T00:00:00",
+      "Id": 2
+    },
+    {
+      "Name": "Overwatch 2",
+      "Studio": "Blizzard Entertainment",
+      "Description": "Team-based hero shooter with a large roster of distinct characters and abilities.",
+      "Genre": "Shooter",
+      "MinPlayers": 1,
+      "MaxPlayers": 10,
+      "Stock": 5,
+      "ReleasedAt": "2022-10-04T00:00:00",
+      "Id": 3
+    },
+    {
+      "Name": "The Witcher 3",
+      "Studio": "CD Projekt Red",
+      "Description": "Open-world fantasy RPG following a monster hunter searching for his adopted daughter.",
+      "Genre": "Rpg",
+      "MinPlayers": 1,
+      "MaxPlayers": 1,
+      "Stock": 5,
+      "ReleasedAt": "2015-05-19T00:00:00",
+      "Id": 4
+    },
+    {
+      "Name": "Mario Kart 8",
+      "Studio": "Nintendo",
+      "Description": "Colourful kart racing across imaginative tracks with items and shortcuts.",
+      "Genre": "Racing",
+      "MinPlayers": 1,
+      "MaxPlayers": 12,
+      "Stock": 10,
+      "ReleasedAt": "2014-05-29T00:00:00",
+      "Id": 5
+    },
+    {
+      "Name": "Resident Evil 4",
+      "Studio": "Capcom",
+      "Description": "Survival horror remake set in a remote village overrun by a violent cult.",
+      "Genre": "Horror",
+      "MinPlayers": 1,
+      "MaxPlayers": 2,
+      "Stock": 12,
+      "ReleasedAt": "2023-03-24T00:00:00",
+      "Id": 6
+    },
+    {
+      "Name": "Civilization VI",
+      "Studio": "Firaxis Games",
+      "Description": "Turn-based strategy where you guide a civilisation from antiquity to the space age.",
+      "Genre": "Strategy",
+      "MinPlayers": 1,
+      "MaxPlayers": 12,
+      "Stock": 7,
+      "ReleasedAt": "2016-10-21T00:00:00",
+      "Id": 7
+    },
+    {
+      "Name": "Mortal kombat",
+      "Studio": "studioTest",
+      "Description": "ksafgnasgasgadgadgdsgsdgsdg",
+      "Genre": "Action",
+      "MinPlayers": 1,
+      "MaxPlayers": 2,
+      "Stock": 10,
+      "ReleasedAt": "2002-10-12T00:00:00",
+      "Id": 8
+    }
+  ],
+  "Characters": [
+    {
+      "Name": "Kratos",
+      "Role": "Damage",
+      "Ultimate": "Mo\u00F6lnir hit",
+      "GameId": 2,
+      "Id": 1
+    },
+    {
+      "Name": "Tracer",
+      "Role": "Damage",
+      "Ultimate": "Pulse Bomb",
+      "GameId": 3,
+      "Id": 2
+    },
+    {
+      "Name": "Reinhardt",
+      "Role": "Tank",
+      "Ultimate": "Earthshatter",
+      "GameId": 3,
+      "Id": 3
+    },
+    {
+      "Name": "Atreus",
+      "Role": "Support",
+      "Ultimate": "Sonic Arrow",
+      "GameId": 2,
+      "Id": 4
+    },
+    {
+      "Name": "Scorpion",
+      "Role": "Damage",
+      "Ultimate": "Spear",
+      "GameId": 8,
+      "Id": 5
+    }
+  ],
+  "Users": [
+    {
+      "Fullname": "Levani Jangveladze",
+      "Email": "chumala12@gmail.com",
+      "PasswordHash": "mWJb2W5JFhTmXA9V3KPLZg==:DhiYdtfLagGar8Wrz46MkXC8jn\u002B4So8tsX6am8PVvKY=",
+      "Role": "Admin",
+      "Code": "431011",
+      "IsVerified": true,
+      "Id": 1
+    },
+    {
+      "Fullname": "Leon Jang",
+      "Email": "Mortalhumanisdarked777@gmail.com",
+      "PasswordHash": "sSLsM32iFBnsZduAEOGx5A==:GxTPN9X\u002Bpy/iIEVPdxnWBGb1EhI/VS3w9qnWQ\u002BdztUM=",
+      "Role": "User",
+      "Code": null,
+      "IsVerified": true,
+      "Id": 2
+    }
+  ],
+  "Rentals": [
+    {
+      "UserId": 1,
+      "GameId": 1,
+      "RentedAt": "2026-07-29T15:59:19.208364Z",
+      "ReturnedAt": "2026-07-29T16:00:45.548855Z",
+      "Id": 1
+    },
+    {
+      "UserId": 1,
+      "GameId": 7,
+      "RentedAt": "2026-07-29T16:56:12.984849Z",
+      "ReturnedAt": "2026-07-30T06:53:19.391762Z",
+      "Id": 2
+    },
+    {
+      "UserId": 2,
+      "GameId": 3,
+      "RentedAt": "2026-07-30T06:39:22.555385Z",
+      "ReturnedAt": "2026-07-30T06:39:31.220868Z",
+      "Id": 3
+    },
+    {
+      "UserId": 1,
+      "GameId": 3,
+      "RentedAt": "2026-07-30T06:51:02.920047Z",
+      "ReturnedAt": null,
+      "Id": 4
+    }
+  ]
+}
